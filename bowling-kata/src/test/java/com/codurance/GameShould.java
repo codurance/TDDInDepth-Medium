@@ -20,4 +20,14 @@ public class GameShould {
 
         assertEquals(expectedScore, game.score());
     }
+
+    @Test
+    public void calculate_the_score_of_two_rolls() {
+        Game game = new Game();
+
+        game.roll(3);
+        game.roll(7);
+
+        assertEquals(10, game.score());
+    }
 }
