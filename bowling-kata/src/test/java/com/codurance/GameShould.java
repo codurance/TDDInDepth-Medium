@@ -1,16 +1,23 @@
 package com.codurance;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameShould {
-    @Test
-    public void calculate_the_score_of_a_roll() {
+    @ParameterizedTest
+    @CsvSource({
+        "5, 5",
+        "0, 0",
+        "10, 10",
+    })
+    public void calculate_the_score_of_a_roll(int pins, int expectedScore) {
         Game game = new Game();
 
-        game.roll(5);
+        game.roll(pins);
 
-        assertEquals(5, game.score());
+        assertEquals(expectedScore, game.score());
     }
 }

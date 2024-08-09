@@ -2,11 +2,13 @@ package com.codurance;
 
 public class Game {
 
-    public void roll(int pins) {
+    private int pins = 0;
 
+    public void roll(int pins) {
+        this.pins = pins;
     }
 
     public int score() {
-        return 5;
+        return pins;
     }
 }
