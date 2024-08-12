@@ -64,4 +64,14 @@ public class GameShould {
 
         assertEquals(28, game.score());
     }
+
+    @Test
+    public void calculate_the_score_of_two_consecutive_strikes() {
+        game.roll(10);
+        game.roll(10);
+        game.roll(5);
+        game.roll(4);
+
+        assertEquals(53, game.score());
+    }
 }

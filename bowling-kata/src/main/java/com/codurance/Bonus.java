@@ -17,15 +17,26 @@ public class Bonus {
 
         for (int index = 0; index < frameList.size(); index++) {
             Frame frame = frameList.get(index);
+            int nextIndex = index + 1;
             if (frame.isSpare()) {
-                bonusScore += frameList.get(index + 1).firstRoll();
+                bonusScore += frameList.get(nextIndex).firstRoll();
             }
 
             if (frame.isStrike()) {
-                Frame nextFrame = frameList.get(index + 1);
+                if (frameList.size() <= nextIndex) {
+                    continue;
+                }
 
+                Frame nextFrame = frameList.get(nextIndex);
+                int afterNextIndex = nextIndex + 1;
                 bonusScore += nextFrame.firstRoll();
-                bonusScore += nextFrame.secondRoll();
+
+                if (nextFrame.isStrike()) {
+                    Frame afterNextFrame = frameList.get(afterNextIndex);
+                    bonusScore += null == afterNextFrame ? 0 : afterNextFrame.firstRoll();
+                } else {
+                    bonusScore += nextFrame.secondRoll();
+                }
             }
         }
 
