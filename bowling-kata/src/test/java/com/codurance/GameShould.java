@@ -35,4 +35,13 @@ public class GameShould {
 
         assertEquals(9, game.score());
     }
+
+/**    @Test
+    public void calculate_the_score_of_a_spare() {
+        game.roll(5);
+        game.roll(5);
+        game.roll(5);
+
+        assertEquals(20, game.score());
+    }*/
 }

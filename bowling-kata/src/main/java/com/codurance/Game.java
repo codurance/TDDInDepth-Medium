@@ -1,14 +1,20 @@
 package com.codurance;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public class Game {
 
-    private int pins = 0;
+    private List<Integer> rolls = new ArrayList<>();
 
     public void roll(int pins) {
-        this.pins += pins;
+        this.rolls.add(pins);
     }
 
     public int score() {
-        return pins;
+        Frames frames = new Frames(rolls);
+
+        return frames.getScore();
     }
 }
