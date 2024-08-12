@@ -14,4 +14,8 @@ public class Frame {
     public int pins() {
         return rolls.stream().reduce(Integer::sum).orElse(0);
     }
+
+    public boolean hasAllRollsThrown() {
+        return pins() == 10 || rolls.size() == 2;
+    }
 }
