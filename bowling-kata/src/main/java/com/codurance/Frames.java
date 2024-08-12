@@ -1,18 +1,26 @@
 package com.codurance;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Frames {
-    private final List<Integer> rolls;
+    private final List<Frame> frames = new ArrayList<>();
 
     public Frames(List<Integer> rolls) {
 
-        this.rolls = rolls;
+        rolls.forEach((roll) -> {
+            if (frames.isEmpty()) {
+                frames.add(new Frame());
+            }
+
+            Frame currentFrame = frames.getLast();
+            currentFrame.addRoll(roll);
+        });
     }
 
     public int getScore() {
-        Optional<Integer> score = rolls.stream().reduce(Integer::sum);
+        Optional<Integer> score = frames.stream().map(Frame::pins).reduce(Integer::sum);
 
         return score.orElse(0);
     }
