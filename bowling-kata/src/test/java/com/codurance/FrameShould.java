@@ -31,4 +31,13 @@ public class FrameShould {
         assertTrue(frame.hasAllRollsThrown());
     }
 
+    @Test
+    public void know_when_is_a_spare() {
+        Frame frame = new Frame();
+        frame.addRoll(5);
+        frame.addRoll(5);
+
+        assertTrue(frame.isSpare());
+        assertTrue(frame.hasAllRollsThrown());
+    }
 }

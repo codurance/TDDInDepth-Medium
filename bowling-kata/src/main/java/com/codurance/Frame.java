@@ -18,4 +18,8 @@ public class Frame {
     public boolean hasAllRollsThrown() {
         return pins() == 10 || rolls.size() == 2;
     }
+
+    public boolean isSpare() {
+        return rolls.size() == 2 && pins() == 10;
+    }
 }
