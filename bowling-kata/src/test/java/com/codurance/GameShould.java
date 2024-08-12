@@ -74,4 +74,21 @@ public class GameShould {
 
         assertEquals(53, game.score());
     }
+
+    @Test
+    public void calculate_the_score_of_multiple_consecutive_rolls() {
+        game.roll(10);
+        game.roll(10);
+        game.roll(5);
+        game.roll(5);
+        game.roll(4);
+        game.roll(4);
+        game.roll(10);
+        game.roll(5);
+        game.roll(4);
+
+        // 25 + 20 + 14 + 8 + 19 + 5 + 4
+
+        assertEquals(95, game.score());
+    }
 }

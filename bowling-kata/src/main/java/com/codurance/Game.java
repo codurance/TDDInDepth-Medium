@@ -16,6 +16,6 @@ public class Game {
 
         Bonus bonus = new Bonus(frames);
 
-        return bonus.getScore();
+        return bonus.getExtraScore() + frames.getScore();
     }
 }

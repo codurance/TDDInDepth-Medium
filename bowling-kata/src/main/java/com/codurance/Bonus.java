@@ -9,37 +9,24 @@ public class Bonus {
         this.frames = frames;
     }
 
-    public int getScore() {
+    public int getExtraScore() {
 
-        int bonusScore = 0;
+        int extraScore = 0;
 
         List<Frame> frameList = frames.all();
 
         for (int index = 0; index < frameList.size(); index++) {
             Frame frame = frameList.get(index);
-            int nextIndex = index + 1;
+
             if (frame.isSpare()) {
-                bonusScore += frameList.get(nextIndex).firstRoll();
+                extraScore += new SpareBonus().getExtraScoreFrom(index, frameList);
             }
 
             if (frame.isStrike()) {
-                if (frameList.size() <= nextIndex) {
-                    continue;
-                }
-
-                Frame nextFrame = frameList.get(nextIndex);
-                int afterNextIndex = nextIndex + 1;
-                bonusScore += nextFrame.firstRoll();
-
-                if (nextFrame.isStrike()) {
-                    Frame afterNextFrame = frameList.get(afterNextIndex);
-                    bonusScore += null == afterNextFrame ? 0 : afterNextFrame.firstRoll();
-                } else {
-                    bonusScore += nextFrame.secondRoll();
-                }
+                extraScore += new StrikeBonus().getExtraScoreFrom(index, frameList);
             }
         }
 
-        return frames.getScore() + bonusScore;
+        return extraScore;
     }
 }
