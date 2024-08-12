@@ -8,14 +8,20 @@ public class Frames {
     private final List<Frame> frames = new ArrayList<>();
 
     public Frames(List<Integer> rolls) {
+        int frameIndex = 0;
+        frames.add(new Frame());
+        for (int roll: rolls) {
+            Frame currentFrame = frames.get(frameIndex);
 
-        rolls.forEach((roll) -> {
-            Optional<Frame> currentFrame = frames.stream().findFirst();
-            if (currentFrame.isEmpty() || currentFrame.get().hasAllRollsThrown()) {
-                currentFrame = Optional.of(newFrame());
+            if (currentFrame.hasAllRollsThrown()) {
+                Frame nextFrame = new Frame();
+                frames.add(nextFrame);
+                currentFrame = nextFrame;
+                frameIndex++;
             }
-            currentFrame.get().addRoll(roll);
-        });
+
+            currentFrame.addRoll(roll);
+        }
     }
 
     private Frame newFrame() {

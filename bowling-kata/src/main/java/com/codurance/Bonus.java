@@ -1,7 +1,6 @@
 package com.codurance;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Bonus {
     private final Frames frames;
@@ -12,17 +11,17 @@ public class Bonus {
 
     public int getScore() {
 
-        int index = 0;
-        AtomicInteger bonusScore = new AtomicInteger();
+        int bonusScore = 0;
 
         List<Frame> frameList = frames.all();
 
-        frameList.forEach((frame -> {
+        for (int index = 0; index < frameList.size(); index++) {
+            Frame frame = frameList.get(index);
             if (frame.isSpare()) {
-                bonusScore.addAndGet(frameList.get(index + 1).firstRoll());
+                bonusScore += frameList.get(index + 1).firstRoll();
             }
-        }));
+        }
 
-        return frames.getScore() + bonusScore.get();
+        return frames.getScore() + bonusScore;
     }
 }
