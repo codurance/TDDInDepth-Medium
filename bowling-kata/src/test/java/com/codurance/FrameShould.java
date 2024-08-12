@@ -2,6 +2,7 @@ package com.codurance;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FrameShould {
@@ -39,5 +40,14 @@ public class FrameShould {
 
         assertTrue(frame.isSpare());
         assertTrue(frame.hasAllRollsThrown());
+    }
+
+    @Test
+    public void know_first_roll_value() {
+        Frame frame = new Frame();
+        frame.addRoll(2);
+        frame.addRoll(7);
+
+        assertEquals(2, frame.firstRoll());
     }
 }

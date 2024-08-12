@@ -14,6 +14,8 @@ public class Game {
     public int score() {
         Frames frames = new Frames(rolls);
 
-        return frames.getScore();
+        Bonus bonus = new Bonus(frames);
+
+        return bonus.getScore();
     }
 }

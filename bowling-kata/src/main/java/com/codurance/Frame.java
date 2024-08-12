@@ -22,4 +22,8 @@ public class Frame {
     public boolean isSpare() {
         return rolls.size() == 2 && pins() == 10;
     }
+
+    public int firstRoll() {
+        return rolls.getFirst();
+    }
 }
