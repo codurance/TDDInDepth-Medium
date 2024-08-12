@@ -26,4 +26,12 @@ public class Frame {
     public int firstRoll() {
         return rolls.getFirst();
     }
+
+    public int secondRoll() {
+        return rolls.size() > 1 ? rolls.get(1) : 0;
+    }
+
+    public boolean isStrike() {
+        return rolls.size() == 1 && pins() == 10;
+    }
 }

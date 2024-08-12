@@ -20,6 +20,13 @@ public class Bonus {
             if (frame.isSpare()) {
                 bonusScore += frameList.get(index + 1).firstRoll();
             }
+
+            if (frame.isStrike()) {
+                Frame nextFrame = frameList.get(index + 1);
+
+                bonusScore += nextFrame.firstRoll();
+                bonusScore += nextFrame.secondRoll();
+            }
         }
 
         return frames.getScore() + bonusScore;
