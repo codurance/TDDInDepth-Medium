@@ -10,18 +10,28 @@ public class Frames {
     public Frames(List<Integer> rolls) {
 
         rolls.forEach((roll) -> {
-            if (frames.isEmpty()) {
-                frames.add(new Frame());
+            Optional<Frame> currentFrame = frames.stream().findFirst();
+            if (currentFrame.isEmpty() || currentFrame.get().hasAllRollsThrown()) {
+                currentFrame = Optional.of(newFrame());
             }
-
-            Frame currentFrame = frames.getLast();
-            currentFrame.addRoll(roll);
+            currentFrame.get().addRoll(roll);
         });
+    }
+
+    private Frame newFrame() {
+        Frame frame = new Frame();
+        frames.add(frame);
+
+        return frame;
     }
 
     public int getScore() {
         Optional<Integer> score = frames.stream().map(Frame::pins).reduce(Integer::sum);
 
         return score.orElse(0);
+    }
+
+    public List<Frame> all() {
+        return frames;
     }
 }
