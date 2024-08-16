@@ -1,12 +1,18 @@
 package com.codurance.testableCode.cohesion.tdd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShoppingCart {
+    private List<Item> items = new ArrayList<>();
+
     public void addItem(Product product, int quantity) {
-        throw new UnsupportedOperationException("Method not implemented");
+        items.add(new Item(product, quantity));
     }
 
     public double calculateTotalPrice() {
-        throw new UnsupportedOperationException("Method not implemented");
-
+        return items.stream()
+                .mapToDouble(Item::total)
+                .sum();
     }
 }
