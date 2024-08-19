@@ -1,4 +1,4 @@
-package com.codurance.first.fast;
+package com.codurance.first.fast.temperature;
 
 public class TemperatureConverter {
     public double celsiusToFahrenheit(double celsius) {
