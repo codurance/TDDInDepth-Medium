@@ -1,4 +1,4 @@
-package com.codurance.first.fast;
+package com.codurance.first.fast.temperature;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
