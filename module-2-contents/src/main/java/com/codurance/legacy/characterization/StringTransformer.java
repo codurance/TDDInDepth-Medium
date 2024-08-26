@@ -2,7 +2,7 @@ package com.codurance.legacy.characterization;
 
 class StringTransformer {
 
-    public static String f(String inputString) {
+    public static String transformText(String inputString) {
         StringBuffer o = new StringBuffer();
 
         for (int n = 0; n < inputString.length(); ++n) {
