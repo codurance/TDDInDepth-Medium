@@ -13,7 +13,7 @@ public class InventoryAdjustmentService {
                 throw new ItemNotFoundException("Item not found: " + adjustment.getItemId());
             }
 
-            double price = PricingService.getPriceForItem(item);
+            double price = getPriceForItem(item);
 
             if (adjustment.getQuantity() < 0) {
                 item.reduceStock(-adjustment.getQuantity(), price);
@@ -21,8 +21,16 @@ public class InventoryAdjustmentService {
                 item.increaseStock(adjustment.getQuantity(), price);
             }
 
-            InventoryDatabase.updateItem(item);
+            updateItem(item);
         }
+    }
+
+    protected void updateItem(Item item) throws ExecutionControl.NotImplementedException {
+        InventoryDatabase.updateItem(item);
+    }
+
+    protected double getPriceForItem(Item item) throws ExecutionControl.NotImplementedException {
+        return PricingService.getPriceForItem(item);
     }
 
     protected Item getItem(ItemAdjustment adjustment) throws Throwable {

@@ -11,12 +11,12 @@ public class Item {
     }
     public void reduceStock(int quantity, double price) {
         this.quantity -= quantity;
-        this.price -= price;
+        this.price -= price * quantity;
     }
 
     public void increaseStock(int quantity, double price) {
         this.quantity += quantity;
-        this.price += price;
+        this.price += price * quantity;
     }
 
     public int getQuantity() {
