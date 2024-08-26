@@ -1,0 +1,21 @@
+Input: [1, 2, 3]
+Output: 6
+
+Input: [-1, -2, -3]
+Output: 6
+
+Input: [0, 0, 0]
+Output: 0
+
+Input: [101, 200]
+Output: 602
+
+Input: [-101, -200]
+Output: 150
+
+Input: [50, -50, 0, 150, -150]
+Output: 475
+
+Input: []
+Output: 0
+
