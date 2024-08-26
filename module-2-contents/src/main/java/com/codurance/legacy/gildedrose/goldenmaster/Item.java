@@ -1,4 +1,4 @@
-package com.codurance.legacy.gildedrose;
+package com.codurance.legacy.gildedrose.goldenmaster;
 
 public class Item {
 

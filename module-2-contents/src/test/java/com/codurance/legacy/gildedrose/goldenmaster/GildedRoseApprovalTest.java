@@ -1,4 +1,4 @@
-package com.codurance.legacy.gildedrose;
+package com.codurance.legacy.gildedrose.goldenmaster;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.reporters.DiffReporter;
@@ -21,7 +21,6 @@ public class GildedRoseApprovalTest {
 
         Approvals.verifyAll("Items", items);
     }
-
 
     @Test
     public void shouldDecreaseTheItemQualityWhenQualityIsUpdatedDuringThirtyDays() {
