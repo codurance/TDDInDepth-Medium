@@ -3,27 +3,40 @@ package com.codurance.legacy.characterization;
 class StringTransformer {
 
     public static String transformText(String inputString) {
-        StringBuffer o = new StringBuffer();
+        StringBuffer transformedString = new StringBuffer();
 
-        for (int n = 0; n < inputString.length(); ++n) {
-            int c = inputString.charAt(n);
-
-            if (c == '<') {
-                while (n < inputString.length() && inputString.charAt(n) != '/' && inputString.charAt(n) != '>') {
-                    n++;
+        for (int currentPosition = 0; currentPosition < inputString.length(); ++currentPosition) {
+            char currentCharacter = inputString.charAt(currentPosition);
+            if (isOpeningChevron(currentCharacter)) {
+                while (currentPosition < inputString.length()
+                    && !isSlash(inputString.charAt(currentPosition))
+                    && !isClosingChevron(inputString.charAt(currentPosition))) {
+                    currentPosition++;
                 }
-                if (n < inputString.length() && inputString.charAt(n) == '/') {
-                    n += 4;
+                if (currentPosition < inputString.length() && isSlash(inputString.charAt(currentPosition))) {
+                    currentPosition += 4;
                 } else {
-                    n++;
+                    currentPosition++;
                 }
             }
 
-            if (n < inputString.length()) {
-                o.append(inputString.charAt(n));
+            if (currentPosition < inputString.length()) {
+                transformedString.append(inputString.charAt(currentPosition));
             }
         }
 
-        return new String(o);
+        return new String(transformedString);
+    }
+
+    private static boolean isOpeningChevron(char character) {
+        return character == '<';
+    }
+
+    private static boolean isClosingChevron(char character) {
+        return character == '>';
+    }
+
+    private static boolean isSlash(char character) {
+        return character == '/';
     }
 }
