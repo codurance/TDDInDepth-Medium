@@ -26,7 +26,7 @@ public class IntegerProcessorShould {
         StringBuilder results = new StringBuilder();
         for (List<Integer> testCase : testCases) {
             results.append("Input: ").append(testCase).append("\n");
-            results.append("Output: ").append(processor.p(testCase)).append("\n\n");
+            results.append("Output: ").append(processor.process(testCase)).append("\n\n");
         }
 
         // Verify with Approvals

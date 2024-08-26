@@ -3,19 +3,35 @@ package com.codurance.legacy.goldenmaster;
 import java.util.List;
 
 public class IntegerProcessor {
-    public int p(List<Integer> l) {
-        int r = 0;
-        for (int n : l) {
-            if (n > 100) {
-                r += n * 2;
-            } else if (n < -100) {
-                r -= n / 2;
-            } else if (n > 0) {
-                r += n;
-            } else if (n < 0) {
-                r -= n;
+    public int process(List<Integer> numbers) {
+        int processedTotal = 0;
+        for (int number : numbers) {
+            if (isGreaterThanAHundred(number)) {
+                processedTotal += number * 2;
+            } else if (isSmallerThanAMinusHundred(number)) {
+                processedTotal -= number / 2;
+            } else if (isGreaterThanZero(number)) {
+                processedTotal += number;
+            } else if (isSmallerThanZero(number)) {
+                processedTotal -= number;
             }
         }
-        return r;
+        return processedTotal;
+    }
+
+    private static boolean isSmallerThanZero(int number) {
+        return number < 0;
+    }
+
+    private static boolean isGreaterThanZero(int number) {
+        return number > 0;
+    }
+
+    private static boolean isSmallerThanAMinusHundred(int number) {
+        return number < -100;
+    }
+
+    private static boolean isGreaterThanAHundred(int number) {
+        return number > 100;
     }
 }
