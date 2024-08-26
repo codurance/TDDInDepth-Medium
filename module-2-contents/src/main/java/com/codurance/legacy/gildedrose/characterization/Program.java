@@ -1,4 +1,4 @@
-package com.codurance.legacy.gildedrose;
+package com.codurance.legacy.gildedrose.characterization;
 
 public class Program {
 
