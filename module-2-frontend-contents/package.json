@@ -10,10 +10,12 @@
         "preview": "vite preview",
         "test": "vitest",
         "test:component": "cypress open --component --browser electron",
-        "test:e2e": "cypress open --e2e --browser electron",
-        "test:mutation": "stryker run"
+        "test:e2e": "cypress open --e2e --browser chrome",
+        "test:mutation": "stryker run",
+        "dev:server": "npx json-server db.json -p 5000 "
     },
     "dependencies": {
+        "@tanstack/react-query": "^5.52.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
@@ -34,6 +36,7 @@
         "eslint-plugin-react-refresh": "^0.4.9",
         "globals": "^15.9.0",
         "jsdom": "^25.0.0",
+        "msw": "^2.3.5",
         "typescript": "^5.5.3",
         "typescript-eslint": "^8.0.1",
         "vite": "^5.4.1",
