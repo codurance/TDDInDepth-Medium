@@ -2,7 +2,7 @@ import {NewProduct} from "../types/NewProduct.ts";
 import {createProductRequest, getProductsRequest} from "../http/api.ts";
 import {Product} from "../types/Product.ts";
 import {useMutation, useQuery} from "@tanstack/react-query";
-import {QUERY_KEYS} from "../components/lib/react-query";
+import {QUERY_KEYS} from "../../lib/react-query";
 
 export const useProducts = () => {
     const {mutateAsync} = useMutation({mutationFn: createProductRequest})
