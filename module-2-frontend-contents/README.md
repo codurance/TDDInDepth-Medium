@@ -17,3 +17,8 @@ E2E tests with Cypress (cypress/e2e/*.cy.ts):
 ```bash
 npm run test:e2e
 ```
+
+Mutation tests with Stryker
+```bash
+npm run test:mutation
+```

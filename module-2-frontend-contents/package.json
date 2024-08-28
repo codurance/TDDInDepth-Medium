@@ -1,5 +1,5 @@
 {
-    "name": "module-2-frontend-contents",
+    "name": "tdd-in-depth-frontend-template",
     "private": true,
     "version": "0.0.0",
     "type": "module",
@@ -10,7 +10,8 @@
         "preview": "vite preview",
         "test": "vitest",
         "test:component": "cypress open --component --browser electron",
-        "test:e2e": "cypress open --e2e --browser electron"
+        "test:e2e": "cypress open --e2e --browser electron",
+        "test:mutation": "stryker run"
     },
     "dependencies": {
         "react": "^18.3.1",
@@ -18,6 +19,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.9.0",
+        "@stryker-mutator/vitest-runner": "^8.5.0",
         "@testing-library/cypress": "^10.0.2",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.5.0",
