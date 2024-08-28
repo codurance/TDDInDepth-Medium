@@ -6,9 +6,11 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc -b && vite build",
-        "lint": "eslint .",
+        "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
-        "test": "vitest"
+        "test": "vitest",
+        "test:component": "cypress open --component --browser electron",
+        "test:e2e": "cypress open --e2e --browser electron"
     },
     "dependencies": {
         "react": "^18.3.1",
@@ -16,6 +18,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.9.0",
+        "@testing-library/cypress": "^10.0.2",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.5.0",
         "@testing-library/react": "^16.0.0",
@@ -23,6 +26,7 @@
         "@types/react": "^18.3.4",
         "@types/react-dom": "^18.3.0",
         "@vitejs/plugin-react": "^4.3.1",
+        "cypress": "^13.14.0",
         "eslint": "^9.9.0",
         "eslint-plugin-react-hooks": "^5.1.0-rc.0",
         "eslint-plugin-react-refresh": "^0.4.9",
