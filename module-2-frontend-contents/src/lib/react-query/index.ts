@@ -11,6 +11,7 @@ export const queryClient = new QueryClient({
 
 export const QUERY_KEYS = {
     GET_PRODUCTS: "GET_PRODUCTS",
+    GET_TODOS: "GET_TODOS",
 } as const;
 
 const queryKeyValues = Object.values(QUERY_KEYS);

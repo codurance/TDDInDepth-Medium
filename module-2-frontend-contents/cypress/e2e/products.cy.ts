@@ -4,7 +4,7 @@ import {Product} from "../../src/whatToTest/types/Product.ts";
 describe('given a user navigates to the products page', () => {
     describe("when they create a Television product", () => {
         it('then they should be able to see the created product in the list of products', async () => {
-            let products: Product[] = []
+            const products: Product[] = []
             cy.intercept({
                 method: 'POST',
                 url: 'http://localhost:5000/products',
