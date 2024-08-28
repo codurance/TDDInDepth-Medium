@@ -23,5 +23,5 @@
           "cypress", "@testing-library/cypress"
       ]
   },
-  "include": ["src", "cypress", "cypress.d.ts"]
+  "include": ["src", "cypress", "cypress.d.ts", "setupTests.ts"]
 }
