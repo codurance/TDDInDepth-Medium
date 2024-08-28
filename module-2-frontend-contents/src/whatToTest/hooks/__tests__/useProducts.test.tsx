@@ -1,34 +1,37 @@
-import {useProducts} from "../useProducts.ts";
-import {renderHook, waitFor} from "@testing-library/react";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { renderHook, waitFor } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { queryClient } from "../../../lib/react-query";
 import * as api from "../../http/api.ts";
-import {vi, describe, it, expect, afterEach} from "vitest";
-import {Product} from "../../types/Product.ts";
-import {QueryClientProvider} from "@tanstack/react-query";
-import {queryClient} from "../../components/lib/react-query";
+import { Product } from "../../types/Product.ts";
+import { useProducts } from "../useProducts.ts";
 
 describe("useProducts", () => {
     afterEach(() => {
-        vi.clearAllMocks()
-    })
+        vi.clearAllMocks();
+    });
 
     const newProduct = {
         description: "Product description",
         name: "Product name",
         image: "https://example.com/image.png",
-        price: 10
+        price: 10,
     };
 
-    it("should create a product", async () => {
-        const createProductRequest = vi.fn()
-        vi.spyOn(api, "createProductRequest").mockImplementation(createProductRequest)
+    it("should create a product and refetch products", async () => {
+        const createProductRequest = vi.fn();
+        const getProductsRequest = vi.fn();
+        vi.spyOn(api, "getProductsRequest").mockImplementation(getProductsRequest);
+        vi.spyOn(api, "createProductRequest").mockImplementation(createProductRequest);
 
-        const {result} = renderHook(() => useProducts(), {
-            wrapper: ({children}) => (<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>)
+        const { result } = renderHook(() => useProducts(), {
+            wrapper: ({ children }) => <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>,
         });
-        await result.current.createProduct(newProduct)
+        await result.current.createProduct(newProduct);
 
-        expect(createProductRequest).toHaveBeenCalled()
-    })
+        expect(createProductRequest).toHaveBeenCalled();
+        expect(getProductsRequest).toHaveBeenCalled();
+    });
 
     it("should load the list of products", async () => {
         const products: Product[] = [
@@ -39,18 +42,18 @@ describe("useProducts", () => {
             {
                 id: "8d6eb0af-34a6-40bf-9ecb-7e384e220763",
                 ...newProduct,
-            }
+            },
         ];
-        const getProductsRequest = vi.fn().mockResolvedValue(products)
-        vi.spyOn(api, "getProductsRequest").mockImplementation(getProductsRequest)
+        const getProductsRequest = vi.fn().mockResolvedValue(products);
+        vi.spyOn(api, "getProductsRequest").mockImplementation(getProductsRequest);
 
-        const {result} = renderHook(() => useProducts(), {
-            wrapper: ({children}) => (<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>)
+        const { result } = renderHook(() => useProducts(), {
+            wrapper: ({ children }) => <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>,
         });
 
         await waitFor(() => {
+            console.log(result.current.products);
             expect(result.current.products).toEqual(products);
-        })
-    })
-})
-
+        });
+    });
+});

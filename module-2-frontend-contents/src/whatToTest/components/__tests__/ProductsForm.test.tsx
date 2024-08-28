@@ -4,7 +4,7 @@ import {userEvent} from "@testing-library/user-event";
 import {vi, describe, it, expect, afterEach} from "vitest";
 import * as useProductsHook from "../../hooks/useProducts.ts"
 import {QueryClientProvider} from "@tanstack/react-query";
-import {queryClient} from "../lib/react-query";
+import {queryClient} from "../../../lib/react-query";
 
 describe("ProductsForm", () => {
     afterEach(() => {
@@ -16,7 +16,7 @@ describe("ProductsForm", () => {
         vi.spyOn(useProductsHook, "useProducts").mockImplementation(() => {
             return {
                 createProduct,
-                loadProducts: vi.fn(),
+                getProducts: vi.fn(),
                 products: [],
             }
         })

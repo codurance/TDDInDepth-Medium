@@ -57,8 +57,8 @@ describe("ProductsPage", () => {
 
         await userEvent.click(createProductButton);
 
-        const createdProduct = await screen.findByRole("heading", {level: 3})
+        const createdProduct = await screen.findByRole("heading", {level: 3, name: newProduct.name})
 
-        expect(createdProduct).toHaveTextContent(newProduct.name);
+        expect(createdProduct).toBeVisible();
     })
 })
