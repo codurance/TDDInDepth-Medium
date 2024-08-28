@@ -1,9 +1,14 @@
 package com.codurance.legacy.branchbyabstraction;
 
 public class NotificationService {
-    private final ThirdPartyNotificationClient notificationClient;
+    private final NotificationClient notificationClient;
 
     NotificationService(ThirdPartyNotificationClient notificationClient) {
+
+        this.notificationClient = notificationClient;
+    }
+
+    NotificationService(NotificationClient notificationClient) {
 
         this.notificationClient = notificationClient;
     }
