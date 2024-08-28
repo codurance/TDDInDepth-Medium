@@ -12,6 +12,8 @@
         "cy:open": "cypress open"
     },
     "dependencies": {
+        "@types/pg": "^8.11.7",
+        "pg": "^8.12.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
     },
