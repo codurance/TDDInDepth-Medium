@@ -10,15 +10,19 @@ import {Todo} from "../types/Todo.ts";
 export const TodoList = (props: { todos: Todo[], title: string }) => {
     const {updateTodo} = useContext(TodoContext);
 
-    return <List component={Paper} sx={{flex: 1}} subheader={
-        <ListSubheader component="h2" sx={{fontSize: "2rem"}}>
-            {props.title}
-        </ListSubheader>
-    }>
-        {props.todos.map((todo: Todo) => (
-            <ListItem key={todo.id}>
-                <TodoCard todo={todo} onStatusChange={(todo) => updateTodo(todo)}/>
-            </ListItem>
-        ))}
-    </List>;
+    return (
+        <Paper sx={{flex: 1}}>
+            <List  subheader={
+                <ListSubheader component="h2" sx={{fontSize: "2rem"}}>
+                    {props.title}
+                </ListSubheader>
+            }>
+                {props.todos.map((todo: Todo) => (
+                    <ListItem key={todo.id}>
+                        <TodoCard todo={todo} onStatusChange={(todo) => updateTodo(todo)}/>
+                    </ListItem>
+                ))}
+            </List>
+        </Paper>
+    );
 };

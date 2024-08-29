@@ -42,7 +42,7 @@ export const TodoForm = () => {
                 bottom: "2rem",
                 right: "2rem",
                 zIndex: 100
-            }} variant="contained" color="primary" onClick={toggleDrawer}>
+            }} variant="contained" color="primary" onClick={toggleDrawer} aria-label="Add todo">
                 <PlusIcon/>
             </Button>
             <Drawer
