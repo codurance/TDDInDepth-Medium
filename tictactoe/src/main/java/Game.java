@@ -1,5 +1,12 @@
 public class Game {
+
+    private Player player = Player.PLAYER_X;
+
     public Player toPlay() {
-        return Player.PLAYER_X;
+        return player;
+    }
+
+    public void play() {
+        player = Player.PLAYER_O;
     }
 }
