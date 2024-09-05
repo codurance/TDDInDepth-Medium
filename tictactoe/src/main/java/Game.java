@@ -15,7 +15,7 @@ public class Game {
         if (board.isTaken(positions)) {
             return;
         }
-        board.playOn(positions);
+        board.playOn(positions, player);
         player = player.nextPlayer();
     }
 
