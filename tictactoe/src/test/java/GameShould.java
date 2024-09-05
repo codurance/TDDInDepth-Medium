@@ -9,7 +9,7 @@ public class GameShould {
 
     @BeforeEach
     void setUp() {
-        game = new Game(new Board());
+        game = new Game(new Board(), new Referee());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class GameShould {
     }
 
     @Test
-    public void return_game_status() {
+    public void set_player_X_as_winner() {
         game.play(Position.TOP_LEFT);
         game.play(Position.CENTER);
         game.play(Position.TOP);
@@ -51,6 +51,21 @@ public class GameShould {
         assertEquals(new GameStatus(
             Status.WIN,
             Player.PLAYER_X
+        ), game.status());
+    }
+
+    @Test
+    public void set_player_O_as_winner() {
+        game.play(Position.BOTTOM_LEFT);
+        game.play(Position.TOP_LEFT);
+        game.play(Position.CENTER);
+        game.play(Position.TOP);
+        game.play(Position.CENTER_RIGHT);
+        game.play(Position.TOP_RIGHT);
+
+        assertEquals(new GameStatus(
+            Status.WIN,
+            Player.PLAYER_O
         ), game.status());
     }
 }
