@@ -39,4 +39,18 @@ public class GameShould {
 
         assertEquals(Player.PLAYER_O, game.toPlay());
     }
+
+    @Test
+    public void return_game_status() {
+        game.play(Position.TOP_LEFT);
+        game.play(Position.CENTER);
+        game.play(Position.TOP);
+        game.play(Position.CENTER_RIGHT);
+        game.play(Position.TOP_RIGHT);
+
+        assertEquals(new GameStatus(
+            Status.WIN,
+            Player.PLAYER_X
+        ), game.status());
+    }
 }

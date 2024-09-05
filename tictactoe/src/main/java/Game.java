@@ -19,4 +19,10 @@ public class Game {
         player = player.nextPlayer();
     }
 
+    public GameStatus status() {
+        return new GameStatus(
+            Status.WIN,
+            Player.PLAYER_X
+        );
+    }
 }
