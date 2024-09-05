@@ -38,4 +38,21 @@ public class BoardShould {
 
         assertEquals(List.of(Position.TOP), positions);
     }
+
+    @Test
+    public void be_full_when_all_positions_played() {
+        Board board = new Board();
+
+        board.playOn(Position.TOP_LEFT, Player.PLAYER_O);
+        board.playOn(Position.TOP, Player.PLAYER_X);
+        board.playOn(Position.TOP_RIGHT, Player.PLAYER_O);
+        board.playOn(Position.CENTER_LEFT, Player.PLAYER_X);
+        board.playOn(Position.CENTER, Player.PLAYER_O);
+        board.playOn(Position.CENTER_RIGHT, Player.PLAYER_X);
+        board.playOn(Position.BOTTOM_LEFT, Player.PLAYER_O);
+        board.playOn(Position.BOTTOM, Player.PLAYER_X);
+        board.playOn(Position.BOTTOM_RIGHT, Player.PLAYER_O);
+
+        assertTrue(board.isFull());
+    }
 }
