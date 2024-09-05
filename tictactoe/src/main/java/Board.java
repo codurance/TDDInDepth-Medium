@@ -19,4 +19,8 @@ public class Board {
             .map(Map.Entry::getKey)
             .toList();
     }
+
+    public boolean isFull() {
+        return playerPositions.size() == 9;
+    }
 }
