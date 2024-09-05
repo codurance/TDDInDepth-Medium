@@ -16,7 +16,7 @@ public class GameShould {
 
         Game game = new Game();
 
-        game.play();
+        game.play(Tile.TOP_LEFT);
 
         assertEquals(Player.PLAYER_O, game.toPlay());
     }
@@ -26,9 +26,19 @@ public class GameShould {
 
         Game game = new Game();
 
-        game.play();
-        game.play();
+        game.play(Tile.TOP_LEFT);
+        game.play(Tile.TOP);
 
         assertEquals(Player.PLAYER_X, game.toPlay());
+    }
+
+    @Test
+    public void not_allow_players_to_play_on_already_taken_positions() {
+        Game game = new Game();
+
+        game.play(Tile.TOP_LEFT);
+        game.play(Tile.TOP_LEFT);
+
+        assertEquals(Player.PLAYER_O, game.toPlay());
     }
 }
