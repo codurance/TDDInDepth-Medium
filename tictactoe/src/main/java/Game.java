@@ -4,17 +4,21 @@ import java.util.List;
 public class Game {
 
     private Player player = Player.PLAYER_X;
-    private List<Tile> tiles = new ArrayList<>();
+    private Board board;
+
+    Game(Board board) {
+        this.board = board;
+    }
 
     public Player toPlay() {
         return player;
     }
 
     public void play(Tile tile) {
-        if (tiles.contains(tile)) {
+        if (board.contains(tile)) {
             return;
         }
-        tiles.add(tile);
+        board.add(tile);
         player = player.nextPlayer();
     }
 
