@@ -20,4 +20,15 @@ public class GameShould {
 
         assertEquals(Player.PLAYER_O, game.toPlay());
     }
+
+    @Test
+    public void wait_for_player_X_to_play_after_player_O() {
+
+        Game game = new Game();
+
+        game.play();
+        game.play();
+
+        assertEquals(Player.PLAYER_X, game.toPlay());
+    }
 }
