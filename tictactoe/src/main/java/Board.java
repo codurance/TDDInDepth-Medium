@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<Tile> tiles = new ArrayList<>();
+    private List<Position> positions = new ArrayList<>();
 
-    public boolean contains(Tile tile) {
-        return tiles.contains(tile);
+    public boolean isTaken(Position position) {
+        return positions.contains(position);
     }
 
-    public void add(Tile tile) {
-        tiles.add(tile);
+    public void playOn(Position position) {
+        positions.add(position);
     }
 }

@@ -19,23 +19,23 @@ public class GameShould {
 
     @Test
     public void wait_for_player_O_to_play_after_player_X() {
-        game.play(Tile.TOP_LEFT);
+        game.play(Position.TOP_LEFT);
 
         assertEquals(Player.PLAYER_O, game.toPlay());
     }
 
     @Test
     public void wait_for_player_X_to_play_after_player_O() {
-        game.play(Tile.TOP_LEFT);
-        game.play(Tile.TOP);
+        game.play(Position.TOP_LEFT);
+        game.play(Position.TOP);
 
         assertEquals(Player.PLAYER_X, game.toPlay());
     }
 
     @Test
     public void not_allow_players_to_play_on_already_taken_positions() {
-        game.play(Tile.TOP_LEFT);
-        game.play(Tile.TOP_LEFT);
+        game.play(Position.TOP_LEFT);
+        game.play(Position.TOP_LEFT);
 
         assertEquals(Player.PLAYER_O, game.toPlay());
     }

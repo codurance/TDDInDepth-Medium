@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Game {
 
     private Player player = Player.PLAYER_X;
@@ -14,11 +11,11 @@ public class Game {
         return player;
     }
 
-    public void play(Tile tile) {
-        if (board.contains(tile)) {
+    public void play(Position positions) {
+        if (board.isTaken(positions)) {
             return;
         }
-        board.add(tile);
+        board.playOn(positions);
         player = player.nextPlayer();
     }
 
