@@ -7,8 +7,7 @@ public class Game {
     }
 
     public void play() {
-        player = Player.PLAYER_O.equals(player)
-            ? Player.PLAYER_X
-            : Player.PLAYER_O;
+        player = player.nextPlayer();
     }
+
 }
