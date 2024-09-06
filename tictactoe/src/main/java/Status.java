@@ -1,3 +1,3 @@
 public enum Status {
-    PLAYING, WIN
+    PLAYING, DRAW, WIN
 }
