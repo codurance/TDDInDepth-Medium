@@ -17,6 +17,55 @@ public class RefereeShould {
                     Position.CENTER,
                     Position.TOP_RIGHT
                 )
+            ),
+            Arguments.of(
+                List.of(
+                    Position.CENTER_LEFT,
+                    Position.CENTER,
+                    Position.CENTER_RIGHT
+                )
+            ),
+            Arguments.of(
+                List.of(
+                    Position.BOTTOM_LEFT,
+                    Position.BOTTOM,
+                    Position.BOTTOM_RIGHT
+                )
+            ),
+            Arguments.of(
+                List.of(
+                    Position.TOP_LEFT,
+                    Position.CENTER_LEFT,
+                    Position.BOTTOM_LEFT
+                )
+            ),
+            Arguments.of(
+                List.of(
+                    Position.TOP,
+                    Position.CENTER,
+                    Position.BOTTOM
+                )
+            ),
+            Arguments.of(
+                List.of(
+                    Position.TOP_RIGHT,
+                    Position.CENTER_RIGHT,
+                    Position.BOTTOM_RIGHT
+                )
+            ),
+            Arguments.of(
+                List.of(
+                    Position.TOP_LEFT,
+                    Position.CENTER,
+                    Position.BOTTOM_RIGHT
+                )
+            ),
+            Arguments.of(
+                List.of(
+                    Position.TOP_RIGHT,
+                    Position.CENTER,
+                    Position.BOTTOM_LEFT
+                )
             )
         );
     }
