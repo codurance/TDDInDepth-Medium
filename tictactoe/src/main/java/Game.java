@@ -25,6 +25,12 @@ public class Game {
             return;
         }
 
+        if (board.isFull()) {
+            status = Status.DRAW;
+            player = null;
+            return;
+        }
+
         player = player.nextPlayer();
     }
 

@@ -41,7 +41,7 @@ public class GameShould {
     }
 
     @Test
-    public void set_player_X_as_winner() {
+    public void declare_player_X_as_winner() {
         game.play(Position.TOP_LEFT);
         game.play(Position.CENTER);
         game.play(Position.TOP);
@@ -55,7 +55,7 @@ public class GameShould {
     }
 
     @Test
-    public void set_player_O_as_winner() {
+    public void declare_player_O_as_winner() {
         game.play(Position.BOTTOM_LEFT);
         game.play(Position.TOP_LEFT);
         game.play(Position.CENTER);
@@ -66,6 +66,27 @@ public class GameShould {
         assertEquals(new GameStatus(
             Status.WIN,
             Player.PLAYER_O
+        ), game.status());
+    }
+
+    @Test
+    public void declare_a_draw_when_is_no_winner() {
+        // X O X
+        // X O O
+        // O X X
+        game.play(Position.TOP_LEFT);
+        game.play(Position.TOP);
+        game.play(Position.TOP_RIGHT);
+        game.play(Position.CENTER);
+        game.play(Position.CENTER_LEFT);
+        game.play(Position.CENTER_RIGHT);
+        game.play(Position.BOTTOM);
+        game.play(Position.BOTTOM_LEFT);
+        game.play(Position.BOTTOM_RIGHT);
+
+        assertEquals(new GameStatus(
+            Status.DRAW,
+            null
         ), game.status());
     }
 }
