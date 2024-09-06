@@ -15,23 +15,36 @@ public class Game {
         return player;
     }
 
-    public void play(Position positions) {
-        if (board.isTaken(positions)) {
+    public void play(Position position) {
+        if (isInvalidPlay(position)) {
             return;
         }
-        board.playOn(positions, player);
-        if (referee.hasWon(board.positionsTakenBy(player))) {
+
+        board.playOn(position, player);
+        if (hasWon()) {
             status = Status.WIN;
             return;
         }
 
-        if (board.isFull()) {
+        if (isADraw()) {
             status = Status.DRAW;
             player = null;
             return;
         }
 
         player = player.nextPlayer();
+    }
+
+    private boolean isADraw() {
+        return board.isFull();
+    }
+
+    private boolean hasWon() {
+        return referee.hasWon(board.positionsTakenBy(player));
+    }
+
+    private boolean isInvalidPlay(Position positions) {
+        return board.isTaken(positions);
     }
 
     public GameStatus status() {
