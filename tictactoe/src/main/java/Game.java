@@ -11,10 +11,6 @@ public class Game {
         this.status = Status.PLAYING;
     }
 
-    public Player toPlay() {
-        return player;
-    }
-
     public void play(Position position) {
         if (isInvalidPlay(position)) {
             return;
