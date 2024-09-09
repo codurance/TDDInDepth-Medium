@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -27,13 +26,14 @@ public class MarsRoverShould {
         assertEquals(expectedPosition, marsRover.position());
     }
 
-    @Test
-    public void move_forward_until_wrap_the_planet() {
-        MarsRover marsRover = new MarsRover(Direction.WEST, new Position(0, 2), new Planet(5, 5));
+    @ParameterizedTest
+    @MethodSource("getForwardWrapAround")
+    public void move_forward_until_wrap_the_planet(Direction direction, Position position, Position expectedPosition) {
+        MarsRover marsRover = new MarsRover(direction, position, new Planet(5, 5));
 
         marsRover.execute("FFFFFF");
 
-        assertEquals(new Position(0, 1), marsRover.position());
+        assertEquals(expectedPosition, marsRover.position());
 
     }
 
@@ -124,5 +124,32 @@ public class MarsRoverShould {
         );
     }
 
+
+    public static Stream<Arguments> getForwardWrapAround() {
+        return Stream.of(
+            Arguments.of(
+                Direction.NORTH,
+                new Position(0, 2),
+                new Position(1, 2)
+            ),
+            Arguments.of(
+                Direction.WEST,
+                new Position(0, 2),
+                new Position(0, 1)
+            ),
+            Arguments.of(
+                Direction.SOUTH,
+                new Position(0, 2),
+                new Position(4, 2)
+            ),
+            Arguments.of(
+                Direction.EAST,
+                new Position(0, 2),
+                new Position(0, 3)
+            )
+        );
+
+
+    }
 
 }
