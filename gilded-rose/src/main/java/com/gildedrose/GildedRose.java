@@ -10,6 +10,42 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
+            new ItemUpdater(item).invoke();
+        }
+    }
+
+    private void upgradeQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
+
+    private void decreaseSellIn(Item item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
+    private void degradeQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
+        }
+    }
+
+    private boolean isPassedSellIn(Item item) {
+        return item.sellIn < 0;
+    }
+
+    private class ItemUpdater {
+        private Item item;
+
+        public ItemUpdater(Item item) {
+            this.item = item;
+        }
+
+        public void invoke() {
+            update(item);
+        }
+
+        private void update(Item item) {
             switch (item.name) {
                 case "Aged Brie":
                     upgradeQuality(item);
@@ -52,25 +88,5 @@ class GildedRose {
                     break;
             }
         }
-    }
-
-    private void upgradeQuality(Item item) {
-        if (item.quality < 50) {
-            item.quality = item.quality + 1;
-        }
-    }
-
-    private void decreaseSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
-    }
-
-    private void degradeQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality = item.quality - 1;
-        }
-    }
-
-    private boolean isPassedSellIn(Item item) {
-        return item.sellIn < 0;
     }
 }
