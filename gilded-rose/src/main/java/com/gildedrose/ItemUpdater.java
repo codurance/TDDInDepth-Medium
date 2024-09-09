@@ -58,6 +58,18 @@ class ItemUpdater {
             case "Sulfuras, Hand of Ragnaros":
 
                 break;
+            case "Conjured Mana Cake":
+                degradeQuality(item);
+                degradeQuality(item);
+
+                decreaseSellIn(item);
+
+                if (isPassedSellIn(item)) {
+                    degradeQuality(item);
+                    degradeQuality(item);
+                }
+
+                break;
             default:
                 degradeQuality(item);
 
