@@ -39,7 +39,7 @@ class ItemUpdater {
 
                 break;
             case "Conjured Mana Cake":
-                updateConjuredItem(item);
+                new ConjuredUpdater().update(item);
                 break;
             default:
                 updateNormalItem(item);
@@ -57,7 +57,7 @@ class ItemUpdater {
         }
     }
 
-    private void updateConjuredItem(Item item) {
+    protected void updateConjuredItem(Item item) {
         degradeQuality(item);
         degradeQuality(item);
 
