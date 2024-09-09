@@ -42,12 +42,12 @@ class ItemUpdater {
                 new ConjuredUpdater().update(item);
                 break;
             default:
-                updateNormalItem(item);
+                new NormalUpdater().update(item);
                 break;
         }
     }
 
-    private void updateNormalItem(Item item) {
+    protected void updateNormalItem(Item item) {
         degradeQuality(item);
 
         decreaseSellIn(item);
