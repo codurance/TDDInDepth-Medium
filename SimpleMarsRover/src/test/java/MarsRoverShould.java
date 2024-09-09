@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,10 +16,19 @@ public class MarsRoverShould {
      * Implement wrapping at edges. But be careful, planets are spheres.
      */
 
+    @Test
+    public void move_forward() {
+        MarsRover marsRover = new MarsRover(Direction.NORTH, new Position(3, 3));
+
+        marsRover.execute("F");
+
+        assertEquals(new Position(4, 3), marsRover.position());
+    }
+
     @ParameterizedTest
     @MethodSource("getLeftRotations")
     public void rotate_to_left(Direction direction, Direction expectedDirection) {
-        MarsRover marsRover = new MarsRover(direction);
+        MarsRover marsRover = new MarsRover(direction, new Position(3, 3));
 
         marsRover.execute("L");
 
@@ -28,7 +38,7 @@ public class MarsRoverShould {
     @ParameterizedTest
     @MethodSource("getRightRotations")
     public void rotate_to_right(Direction direction, Direction expectedDirection) {
-        MarsRover marsRover = new MarsRover(direction);
+        MarsRover marsRover = new MarsRover(direction, new Position(3, 3));
 
         marsRover.execute("R");
 
