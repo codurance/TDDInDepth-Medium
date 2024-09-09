@@ -24,15 +24,10 @@ class ItemUpdater {
         return item.sellIn < 0;
     }
 
-    public ItemUpdater(Item item) {
-        this.item = item;
+    public ItemUpdater() {
     }
 
-    public void invoke() {
-        update(item);
-    }
-
-    private void update(Item item) {
+    public void update(Item item) {
         switch (item.name) {
             case "Aged Brie":
                 upgradeQuality(item);
