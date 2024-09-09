@@ -32,7 +32,7 @@ class GildedRose {
                 decreaseSellIn(item);
 
                 if (isPassedSellIn(item)) {
-                    item.quality = item.quality - item.quality;
+                    item.quality = 0;
                 }
             } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
 
@@ -49,23 +49,23 @@ class GildedRose {
         }
     }
 
-    private static void upgradeQuality(Item item) {
+    private void upgradeQuality(Item item) {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
         }
     }
 
-    private static void decreaseSellIn(Item item) {
+    private void decreaseSellIn(Item item) {
         item.sellIn = item.sellIn - 1;
     }
 
-    private static void degradeQuality(Item item) {
+    private void degradeQuality(Item item) {
         if (item.quality > 0) {
             item.quality = item.quality - 1;
         }
     }
 
-    private static boolean isPassedSellIn(Item item) {
+    private boolean isPassedSellIn(Item item) {
         return item.sellIn < 0;
     }
 }
