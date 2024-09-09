@@ -20,17 +20,27 @@ public class MarsRoverShould {
     @ParameterizedTest
     @MethodSource("getForwardMovements")
     public void move_forward(Direction direction, Position position, Position expectedPosition) {
-        MarsRover marsRover = new MarsRover(direction, position);
+        MarsRover marsRover = new MarsRover(direction, position, new Planet(5, 5));
 
         marsRover.execute("F");
 
         assertEquals(expectedPosition, marsRover.position());
     }
 
+    @Test
+    public void move_forward_until_wrap_the_planet() {
+        MarsRover marsRover = new MarsRover(Direction.WEST, new Position(0, 2), new Planet(5, 5));
+
+        marsRover.execute("FFFFFF");
+
+        assertEquals(new Position(0, 1), marsRover.position());
+
+    }
+
     @ParameterizedTest
     @MethodSource("getLeftRotations")
     public void rotate_to_left(Direction direction, Direction expectedDirection) {
-        MarsRover marsRover = new MarsRover(direction, new Position(3, 3));
+        MarsRover marsRover = new MarsRover(direction, new Position(3, 3), new Planet(5, 5));
 
         marsRover.execute("L");
 
@@ -40,7 +50,7 @@ public class MarsRoverShould {
     @ParameterizedTest
     @MethodSource("getRightRotations")
     public void rotate_to_right(Direction direction, Direction expectedDirection) {
-        MarsRover marsRover = new MarsRover(direction, new Position(3, 3));
+        MarsRover marsRover = new MarsRover(direction, new Position(3, 3), new Planet(5, 5));
 
         marsRover.execute("R");
 
