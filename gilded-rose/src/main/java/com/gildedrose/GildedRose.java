@@ -11,36 +11,25 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
             if (item.name.equals("Aged Brie")) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
+                upgradeQuality(item);
 
-                }
-
-                item.sellIn = item.sellIn - 1;
+                decreaseSellIn(item);
 
                 if (isPassedSellIn(item)) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
+                    upgradeQuality(item);
                 }
             } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
+                upgradeQuality(item);
 
-                    if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1;
-                        }
-                    }
-
-                    if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1;
-                        }
-                    }
+                if (item.sellIn < 11) {
+                    upgradeQuality(item);
                 }
 
-                item.sellIn = item.sellIn - 1;
+                if (item.sellIn < 6) {
+                    upgradeQuality(item);
+                }
+
+                decreaseSellIn(item);
 
                 if (isPassedSellIn(item)) {
                     item.quality = item.quality - item.quality;
@@ -50,7 +39,7 @@ class GildedRose {
             } else {
                 degradeQuality(item);
 
-                item.sellIn = item.sellIn - 1;
+                decreaseSellIn(item);
 
                 if (isPassedSellIn(item)) {
                     degradeQuality(item);
@@ -58,6 +47,16 @@ class GildedRose {
 
             }
         }
+    }
+
+    private static void upgradeQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
+
+    private static void decreaseSellIn(Item item) {
+        item.sellIn = item.sellIn - 1;
     }
 
     private static void degradeQuality(Item item) {
