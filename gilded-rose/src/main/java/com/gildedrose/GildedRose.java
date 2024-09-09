@@ -10,7 +10,7 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            ItemUpdater itemUpdater = new ItemUpdater();
+            ItemUpdater itemUpdater = ItemUpdater.forItem(item);
             itemUpdater.update(item);
         }
     }
