@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MarsRoverShould {
+
     /**
      * You are given the initial starting point (x,y) of a rover and the direction (N,S,E,W) it is facing.
      * The rover receives a character array of commands.
@@ -16,13 +17,14 @@ public class MarsRoverShould {
      * Implement wrapping at edges. But be careful, planets are spheres.
      */
 
-    @Test
-    public void move_forward() {
-        MarsRover marsRover = new MarsRover(Direction.NORTH, new Position(3, 3));
+    @ParameterizedTest
+    @MethodSource("getForwardMovements")
+    public void move_forward(Direction direction, Position position, Position expectedPosition) {
+        MarsRover marsRover = new MarsRover(direction, position);
 
         marsRover.execute("F");
 
-        assertEquals(new Position(4, 3), marsRover.position());
+        assertEquals(expectedPosition, marsRover.position());
     }
 
     @ParameterizedTest
@@ -86,5 +88,31 @@ public class MarsRoverShould {
             )
         );
     }
+
+    public static Stream<Arguments> getForwardMovements() {
+        return Stream.of(
+            Arguments.of(
+                Direction.NORTH,
+                new Position(3, 3),
+                new Position(4, 3)
+            ),
+            Arguments.of(
+                Direction.EAST,
+                new Position(3, 3),
+                new Position(3, 4)
+            ),
+            Arguments.of(
+                Direction.SOUTH,
+                new Position(3, 3),
+                new Position(2, 3)
+            ),
+            Arguments.of(
+                Direction.WEST,
+                new Position(3, 3),
+                new Position(3, 2)
+            )
+        );
+    }
+
 
 }
