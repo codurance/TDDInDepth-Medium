@@ -30,7 +30,7 @@ class ItemUpdater {
     public void update(Item item) {
         switch (item.name) {
             case "Aged Brie":
-                updateBrie(item);
+                new BrieUpdater().update(item);
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 updateBackstagePasses(item);
@@ -87,7 +87,7 @@ class ItemUpdater {
         }
     }
 
-    private void updateBrie(Item item) {
+    protected void updateBrie(Item item) {
         upgradeQuality(item);
 
         decreaseSellIn(item);
