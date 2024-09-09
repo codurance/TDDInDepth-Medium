@@ -11,22 +11,9 @@ public class MarsRover {
 
     public void execute(String commands) {
         for (char command : commands.toCharArray()) {
-            if (command == 'L') {
-                switch (direction) {
-                    case NORTH -> direction = Direction.WEST;
-                    case WEST -> direction = Direction.SOUTH;
-                    case SOUTH -> direction = Direction.EAST;
-                    case EAST -> direction = Direction.NORTH;
-                }
-            }
-
-            if (command == 'R') {
-                switch (direction) {
-                    case NORTH -> direction = Direction.EAST;
-                    case EAST -> direction = Direction.SOUTH;
-                    case SOUTH -> direction = Direction.WEST;
-                    case WEST -> direction = Direction.NORTH;
-                }
+            switch (command) {
+                case 'L' -> direction = direction.rotateToLeft();
+                case 'R' -> direction = direction.rotateToRight();
             }
         }
     }
