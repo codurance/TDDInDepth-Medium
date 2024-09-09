@@ -30,56 +30,70 @@ class ItemUpdater {
     public void update(Item item) {
         switch (item.name) {
             case "Aged Brie":
-                upgradeQuality(item);
-
-                decreaseSellIn(item);
-
-                if (isPassedSellIn(item)) {
-                    upgradeQuality(item);
-                }
+                updateBrie(item);
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
-                upgradeQuality(item);
-
-                if (item.sellIn < 11) {
-                    upgradeQuality(item);
-                }
-
-                if (item.sellIn < 6) {
-                    upgradeQuality(item);
-                }
-
-                decreaseSellIn(item);
-
-                if (isPassedSellIn(item)) {
-                    item.quality = 0;
-                }
+                updateBackstagePasses(item);
                 break;
             case "Sulfuras, Hand of Ragnaros":
 
                 break;
             case "Conjured Mana Cake":
-                degradeQuality(item);
-                degradeQuality(item);
-
-                decreaseSellIn(item);
-
-                if (isPassedSellIn(item)) {
-                    degradeQuality(item);
-                    degradeQuality(item);
-                }
-
+                updateConjuredItem(item);
                 break;
             default:
-                degradeQuality(item);
-
-                decreaseSellIn(item);
-
-                if (isPassedSellIn(item)) {
-                    degradeQuality(item);
-                }
-
+                updateNormalItem(item);
                 break;
+        }
+    }
+
+    private void updateNormalItem(Item item) {
+        degradeQuality(item);
+
+        decreaseSellIn(item);
+
+        if (isPassedSellIn(item)) {
+            degradeQuality(item);
+        }
+    }
+
+    private void updateConjuredItem(Item item) {
+        degradeQuality(item);
+        degradeQuality(item);
+
+        decreaseSellIn(item);
+
+        if (isPassedSellIn(item)) {
+            degradeQuality(item);
+            degradeQuality(item);
+        }
+    }
+
+    private void updateBackstagePasses(Item item) {
+        upgradeQuality(item);
+
+        if (item.sellIn < 11) {
+            upgradeQuality(item);
+        }
+
+        if (item.sellIn < 6) {
+            upgradeQuality(item);
+        }
+
+        decreaseSellIn(item);
+
+        if (isPassedSellIn(item)) {
+            item.quality = 0;
+        }
+    }
+
+    private void updateBrie(Item item) {
+        upgradeQuality(item);
+
+        decreaseSellIn(item);
+
+        if (isPassedSellIn(item)) {
+            upgradeQuality(item);
         }
     }
 }
