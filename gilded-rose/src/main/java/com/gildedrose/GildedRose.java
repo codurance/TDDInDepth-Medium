@@ -18,7 +18,7 @@ class GildedRose {
 
                 item.sellIn = item.sellIn - 1;
 
-                if (item.sellIn < 0) {
+                if (isPassedSellIn(item)) {
                     if (item.quality < 50) {
                         item.quality = item.quality + 1;
                     }
@@ -42,7 +42,7 @@ class GildedRose {
 
                 item.sellIn = item.sellIn - 1;
 
-                if (item.sellIn < 0) {
+                if (isPassedSellIn(item)) {
                     item.quality = item.quality - item.quality;
                 }
             } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -54,7 +54,7 @@ class GildedRose {
 
                 item.sellIn = item.sellIn - 1;
 
-                if (item.sellIn < 0) {
+                if (isPassedSellIn(item)) {
                     if (item.quality > 0) {
                         item.quality = item.quality - 1;
                     }
@@ -62,5 +62,9 @@ class GildedRose {
 
             }
         }
+    }
+
+    private static boolean isPassedSellIn(Item item) {
+        return item.sellIn < 0;
     }
 }
