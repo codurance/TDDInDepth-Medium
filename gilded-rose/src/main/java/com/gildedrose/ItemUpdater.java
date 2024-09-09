@@ -1,8 +1,23 @@
 package com.gildedrose;
 
-class ItemUpdater {
+abstract class ItemUpdater {
 
     private Item item;
+
+    public static ItemUpdater forItem(Item item) {
+        switch (item.name) {
+            case "Aged Brie":
+                return new BrieUpdater();
+            case "Backstage passes to a TAFKAL80ETC concert":
+                return new BackstagePassesUpdater();
+            case "Sulfuras, Hand of Ragnaros":
+                return new LegendaryUpdater();
+            case "Conjured Mana Cake":
+                return new ConjuredUpdater();
+            default:
+                return new NormalUpdater();
+        }
+    }
 
     private void upgradeQuality(Item item) {
         if (item.quality < 50) {
@@ -24,28 +39,7 @@ class ItemUpdater {
         return item.sellIn < 0;
     }
 
-    public ItemUpdater() {
-    }
-
-    public void update(Item item) {
-        switch (item.name) {
-            case "Aged Brie":
-                new BrieUpdater().update(item);
-                break;
-            case "Backstage passes to a TAFKAL80ETC concert":
-                new BackstagePassesUpdater().update(item);
-                break;
-            case "Sulfuras, Hand of Ragnaros":
-                new LegendaryUpdater().update(item);
-                break;
-            case "Conjured Mana Cake":
-                new ConjuredUpdater().update(item);
-                break;
-            default:
-                new NormalUpdater().update(item);
-                break;
-        }
-    }
+    abstract void update(Item item);
 
     protected void updateNormalItem(Item item) {
         degradeQuality(item);
