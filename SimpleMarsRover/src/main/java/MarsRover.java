@@ -19,6 +19,15 @@ public class MarsRover {
                     case EAST -> direction = Direction.NORTH;
                 }
             }
+
+            if (command == 'R') {
+                switch (direction) {
+                    case NORTH -> direction = Direction.EAST;
+                    case EAST -> direction = Direction.SOUTH;
+                    case SOUTH -> direction = Direction.WEST;
+                    case WEST -> direction = Direction.NORTH;
+                }
+            }
         }
     }
 }
