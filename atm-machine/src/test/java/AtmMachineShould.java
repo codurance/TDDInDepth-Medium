@@ -15,4 +15,14 @@ class AtmMachineShould {
 
         assertEquals(expectedWithdrawal, withdrawal);
     }
+
+    @Test
+    public void withdraw_combination_of_coins_worth_3() {
+        AtmMachine atmMachine = new AtmMachine();
+        List<Money> withdrawal = atmMachine.withdraw(3);
+
+        List<Money> expectedWithdrawal = List.of(Money.coin(2), Money.coin(1));
+
+        assertEquals(expectedWithdrawal, withdrawal);
+    }
 }
