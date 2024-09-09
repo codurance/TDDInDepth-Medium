@@ -33,7 +33,7 @@ class ItemUpdater {
                 new BrieUpdater().update(item);
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
-                updateBackstagePasses(item);
+                new BackstagePassesUpdater().update(item);
                 break;
             case "Sulfuras, Hand of Ragnaros":
 
@@ -69,7 +69,7 @@ class ItemUpdater {
         }
     }
 
-    private void updateBackstagePasses(Item item) {
+    protected void updateBackstagePasses(Item item) {
         upgradeQuality(item);
 
         if (item.sellIn < 11) {
