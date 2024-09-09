@@ -9,7 +9,6 @@ public class AtmMachine {
     }
 
     public List<Money> withdraw(int quantity) {
-
         return denominationCollection.selectDenominationsFor(quantity);
     }
 

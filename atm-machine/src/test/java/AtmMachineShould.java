@@ -31,4 +31,13 @@ class AtmMachineShould {
 
         assertEquals(expectedWithdrawal, withdrawal);
     }
+
+    @Test
+    public void withdraw_bill_worth_5() {
+        List<Money> withdrawal = atmMachine.withdraw(5);
+
+        List<Money> expectedWithdrawal = List.of(Money.bill(5));
+
+        assertEquals(expectedWithdrawal, withdrawal);
+    }
 }

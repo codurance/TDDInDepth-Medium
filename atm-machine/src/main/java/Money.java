@@ -9,6 +9,10 @@ public final class Money {
         this.value = value;
     }
 
+    public static Money bill(int value) {
+        return new Money("bill", value);
+    }
+
     public String type() {
         return type;
     }
