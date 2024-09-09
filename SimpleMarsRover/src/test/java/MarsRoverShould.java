@@ -16,8 +16,8 @@ public class MarsRoverShould {
      */
 
     @ParameterizedTest
-    @MethodSource("getRotations")
-    public void rotate_left(Direction direction, Direction expectedDirection) {
+    @MethodSource("getLeftRotations")
+    public void rotate_to_left(Direction direction, Direction expectedDirection) {
         MarsRover marsRover = new MarsRover(direction);
 
         marsRover.execute("L");
@@ -25,7 +25,17 @@ public class MarsRoverShould {
         assertEquals(expectedDirection, marsRover.direction());
     }
 
-    public static Stream<Arguments> getRotations() {
+    @ParameterizedTest
+    @MethodSource("getRightRotations")
+    public void rotate_to_right(Direction direction, Direction expectedDirection) {
+        MarsRover marsRover = new MarsRover(direction);
+
+        marsRover.execute("R");
+
+        assertEquals(expectedDirection, marsRover.direction());
+    }
+
+    public static Stream<Arguments> getLeftRotations() {
         return Stream.of(
             Arguments.of(
                 Direction.NORTH,
@@ -41,6 +51,27 @@ public class MarsRoverShould {
             ),
             Arguments.of(
                 Direction.EAST,
+                Direction.NORTH
+            )
+        );
+    }
+
+    public static Stream<Arguments> getRightRotations() {
+        return Stream.of(
+            Arguments.of(
+                Direction.NORTH,
+                Direction.EAST
+            ),
+            Arguments.of(
+                Direction.EAST,
+                Direction.SOUTH
+            ),
+            Arguments.of(
+                Direction.SOUTH,
+                Direction.WEST
+            ),
+            Arguments.of(
+                Direction.WEST,
                 Direction.NORTH
             )
         );
