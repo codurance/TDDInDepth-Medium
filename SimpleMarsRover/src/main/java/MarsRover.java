@@ -1,10 +1,12 @@
 public class MarsRover {
     private Direction direction;
     private Position position;
+    private final Planet planet;
 
-    public MarsRover(Direction direction, Position position) {
+    public MarsRover(Direction direction, Position position, Planet planet) {
         this.direction = direction;
         this.position = position;
+        this.planet = planet;
     }
 
     public void execute(String commands) {
@@ -12,7 +14,7 @@ public class MarsRover {
             switch (command) {
                 case 'L' -> direction = direction.rotateToLeft();
                 case 'R' -> direction = direction.rotateToRight();
-                case 'F' -> position = position.moveForward(direction);
+                case 'F' -> position = position.moveForward(direction, planet);
             }
         }
     }
