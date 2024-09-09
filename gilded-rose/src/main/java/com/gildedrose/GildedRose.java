@@ -10,41 +10,46 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            if (item.name.equals("Aged Brie")) {
-                upgradeQuality(item);
-
-                decreaseSellIn(item);
-
-                if (isPassedSellIn(item)) {
+            switch (item.name) {
+                case "Aged Brie":
                     upgradeQuality(item);
-                }
-            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                upgradeQuality(item);
 
-                if (item.sellIn < 11) {
+                    decreaseSellIn(item);
+
+                    if (isPassedSellIn(item)) {
+                        upgradeQuality(item);
+                    }
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
                     upgradeQuality(item);
-                }
 
-                if (item.sellIn < 6) {
-                    upgradeQuality(item);
-                }
+                    if (item.sellIn < 11) {
+                        upgradeQuality(item);
+                    }
 
-                decreaseSellIn(item);
+                    if (item.sellIn < 6) {
+                        upgradeQuality(item);
+                    }
 
-                if (isPassedSellIn(item)) {
-                    item.quality = 0;
-                }
-            } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+                    decreaseSellIn(item);
 
-            } else {
-                degradeQuality(item);
+                    if (isPassedSellIn(item)) {
+                        item.quality = 0;
+                    }
+                    break;
+                case "Sulfuras, Hand of Ragnaros":
 
-                decreaseSellIn(item);
-
-                if (isPassedSellIn(item)) {
+                    break;
+                default:
                     degradeQuality(item);
-                }
 
+                    decreaseSellIn(item);
+
+                    if (isPassedSellIn(item)) {
+                        degradeQuality(item);
+                    }
+
+                    break;
             }
         }
     }
