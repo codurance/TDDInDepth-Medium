@@ -36,7 +36,7 @@ class ItemUpdater {
                 new BackstagePassesUpdater().update(item);
                 break;
             case "Sulfuras, Hand of Ragnaros":
-
+                new LegendaryUpdater().update(item);
                 break;
             case "Conjured Mana Cake":
                 new ConjuredUpdater().update(item);
