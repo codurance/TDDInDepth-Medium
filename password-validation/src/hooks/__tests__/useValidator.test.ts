@@ -29,4 +29,10 @@ describe("useValidator", () => {
 
         expect(validator("Password_")).toBe(false);
     })
+
+    it("should return false for a password with no underscore", () => {
+        const {validator} = useValidator();
+
+        expect(validator("Password123")).toBe(false);
+    })
 })
