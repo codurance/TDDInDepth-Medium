@@ -18,13 +18,14 @@ public class ScorerShould {
         assertEquals(expectedScore, score);
     }
 
-    @Test
-    public void score_with_twos_scoring_category() {
+    @ParameterizedTest
+    @MethodSource("twosProvider")
+    public void score_with_twos_scoring_category(int expectedScore, int[] dice) {
         Scorer scorer = new Scorer();
 
-        int score = scorer.score(ScoringCategory.TWOS, new int[]{1, 2, 3, 4, 5});
+        int score = scorer.score(ScoringCategory.TWOS, dice);
 
-        assertEquals(2, score);
+        assertEquals(expectedScore, score);
     }
 
     public static Stream<Arguments> onesProvider() {
@@ -36,6 +37,15 @@ public class ScorerShould {
             Arguments.of(
                 2,
                 new int[]{1, 1, 3, 4, 5}
+            )
+        );
+    }
+
+    public static Stream<Arguments> twosProvider() {
+        return Stream.of(
+            Arguments.of(
+                2,
+                new int[]{1, 2, 3, 4, 5}
             )
         );
     }
