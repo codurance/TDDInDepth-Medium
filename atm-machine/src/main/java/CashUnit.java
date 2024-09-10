@@ -12,6 +12,10 @@ public class CashUnit {
     }
 
     public Money takeOne() {
+        if (!isAvailable()) {
+            throw new CashUnitNotAvailableException();
+        }
+
         quantity--;
         return denomination;
     }
@@ -19,4 +23,5 @@ public class CashUnit {
     public boolean isAvailable() {
         return quantity > 0;
     }
+
 }
