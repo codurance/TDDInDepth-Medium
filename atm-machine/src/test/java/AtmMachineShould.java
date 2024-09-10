@@ -1,43 +1,49 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class AtmMachineShould {
 
     private AtmMachine atmMachine;
+    private MoneyDispenser moneyDispenser;
 
     @BeforeEach
     void setUp() {
-        atmMachine = new AtmMachine(new DenominationCollection());
+        moneyDispenser = mock(MoneyDispenser.class);
+        atmMachine = new AtmMachine(new DenominationCollection(), moneyDispenser);
     }
 
-    @Test
-    public void withdraw_coin_worth_1() {
-        List<Money> expectedWithdrawal = List.of(Money.coin(1));
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2})
+    public void withdraw_single_coin(int coinValue) {
+        List<Money> expectedWithdrawal = List.of(Money.coin(coinValue));
 
-        List<Money> withdrawal = atmMachine.withdraw(1);
+        atmMachine.withdraw(coinValue);
 
-        assertEquals(expectedWithdrawal, withdrawal);
-    }
-
-    @Test
-    public void withdraw_combination_of_coins_worth_3() {
-        List<Money> withdrawal = atmMachine.withdraw(3);
-
-        List<Money> expectedWithdrawal = List.of(Money.coin(2), Money.coin(1));
-
-        assertEquals(expectedWithdrawal, withdrawal);
+        verify(moneyDispenser).dispense(expectedWithdrawal);
     }
 
     @Test
     public void withdraw_bill_worth_5() {
-        List<Money> withdrawal = atmMachine.withdraw(5);
+        atmMachine.withdraw(5);
 
         List<Money> expectedWithdrawal = List.of(Money.bill(5));
 
-        assertEquals(expectedWithdrawal, withdrawal);
+        verify(moneyDispenser).dispense(expectedWithdrawal);
+    }
+
+    @Test
+    public void withdraw_combination_of_coins_worth_3() {
+        atmMachine.withdraw(3);
+
+        List<Money> expectedWithdrawal = List.of(Money.coin(2), Money.coin(1));
+
+        verify(moneyDispenser).dispense(expectedWithdrawal);
     }
 }
