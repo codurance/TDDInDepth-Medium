@@ -15,4 +15,8 @@ public class Frames {
     public Frame get(int index) {
         return frames.get(index);
     }
+
+    public int size() {
+        return frames.size();
+    }
 }
