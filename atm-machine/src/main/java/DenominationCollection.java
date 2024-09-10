@@ -18,7 +18,7 @@ class DenominationCollection {
         ArrayList<Money> withdrawal = new ArrayList<>();
 
         for (Money denomination : availableDenominations) {
-            if (quantity >= denomination.value()) {
+            while (quantity >= denomination.value()) {
                 withdrawal.add(denomination);
                 quantity -= denomination.value();
             }
