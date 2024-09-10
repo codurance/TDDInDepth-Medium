@@ -27,7 +27,7 @@ public class BowlingGameShould {
 
     @BeforeEach
     void setUp() {
-        game = new BowlingGame();
+        game = new BowlingGame(new ScoreCalculator(new FrameParser()));
     }
 
     @Test
