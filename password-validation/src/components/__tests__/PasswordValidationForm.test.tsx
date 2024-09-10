@@ -1,7 +1,7 @@
 import {describe, expect, it, vi} from "vitest";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
-import {PasswordValidationForm} from "../components/PasswordValidationForm.tsx";
+import {PasswordValidationForm} from "../PasswordValidationForm.tsx";
 
 describe("PasswordValidationForm", () => {
     it("user should be able to submit a valid password", async () => {
