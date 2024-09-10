@@ -30,4 +30,18 @@ public class BonusCalculatorShould {
 
         assertEquals(9, bonusCalculator.getBonus(frames));
     }
+
+    @Test
+    public void calculate_the_bonus_of_multiple_strikes() {
+        List<Frame> spare = List.of(
+            new Frame(10, 0),
+            new Frame(10, 0),
+            new Frame(4, 2)
+        );
+        Frames frames = new Frames(spare);
+
+        BonusCalculator bonusCalculator = new BonusCalculator();
+
+        assertEquals(20, bonusCalculator.getBonus(frames));
+    }
 }
