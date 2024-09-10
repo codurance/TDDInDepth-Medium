@@ -23,4 +23,10 @@ describe("useValidator", () => {
 
         expect(validator("password123_")).toBe(false);
     })
+
+    it("should return false for a password with no number", () => {
+        const {validator} = useValidator();
+
+        expect(validator("Password_")).toBe(false);
+    })
 })
