@@ -11,6 +11,7 @@ describe("useValidator", () => {
 
     it.each([
         ["Pass123_"],
+        ["Pass12_"],
     ])("should return false for a password with 8 or less characters", (password: string) => {
         const {validator} = useValidator();
 
