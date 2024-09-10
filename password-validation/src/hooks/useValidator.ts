@@ -1,27 +1,7 @@
+import {PasswordValidator} from "../PasswordValidator/PasswordValidator.ts";
+
 export const useValidator = () => {
-    const validator = (password: string): boolean => {
-        if (password.length <= 8) {
-            return false;
-        }
+    const validator = new PasswordValidator();
 
-        if (!/[A-Z]/.test(password)) {
-            return false;
-        }
-
-        if(!/\d/.test(password)) {
-            return false;
-        }
-
-        if(!/_/.test(password)) {
-            return false;
-        }
-
-        if (!/[a-z]/.test(password)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    return {validator}
+    return {validator: validator.execute.bind(validator)};
 }
