@@ -1,8 +1,10 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class BowlingGameShould {
+
     /**
      * Bowling Rules
      *
@@ -21,26 +23,32 @@ public class BowlingGameShould {
      * int score() returns the total score for that game.
      */
 
+    private BowlingGame game;
+
+    @BeforeEach
+    void setUp() {
+        game = new BowlingGame();
+    }
+
     @Test
     public void get_score_of_a_gutter_game() {
-        BowlingGame game = new BowlingGame();
 
-        for (int i = 0; i < 20; i++) {
-            game.roll(0);
-        }
+        roll(20, 0);
 
         assertSame(0, game.score());
     }
 
     @Test
     public void get_score_of_an_all_ones_game() {
-        BowlingGame game = new BowlingGame();
 
-        for (int i = 0; i < 20; i++) {
-            game.roll(1);
-        }
+        roll(20, 1);
 
         assertSame(20, game.score());
     }
 
+    private void roll(int times, int pins) {
+        for (int i = 0; i < times; i++) {
+            game.roll(pins);
+        }
+    }
 }
