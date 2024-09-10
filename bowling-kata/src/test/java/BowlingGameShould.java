@@ -32,4 +32,15 @@ public class BowlingGameShould {
         assertSame(0, game.score());
     }
 
+    @Test
+    public void get_score_of_an_all_ones_game() {
+        BowlingGame game = new BowlingGame();
+
+        for (int i = 0; i < 20; i++) {
+            game.roll(1);
+        }
+
+        assertSame(20, game.score());
+    }
+
 }
