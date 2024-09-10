@@ -15,6 +15,7 @@ public class MarsRover {
                 case 'L' -> direction = direction.rotateToLeft();
                 case 'R' -> direction = direction.rotateToRight();
                 case 'F' -> position = position.moveForward(direction, planet);
+                case 'B' -> position = position.moveBackward(direction, planet);
             }
         }
     }
