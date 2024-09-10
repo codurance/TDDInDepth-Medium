@@ -1,25 +1,20 @@
 public record Position(int axisX, int axisY) {
     public Position moveForward(Direction direction, Planet planet) {
-        Position position = this;
-
-        switch (direction) {
-            case NORTH -> position = new Position(sumAxisIn(planet.longitude(), axisX), axisY);
-            case EAST -> position = new Position(axisX, sumAxisIn(planet.latitude(), axisY));
-            case SOUTH -> position = new Position(subAxisIn(planet.longitude(), axisX), axisY);
-            case WEST -> position = new Position(axisX, subAxisIn(planet.latitude(), axisY));
-        }
-
-        return position;
+        return switch (direction) {
+            case NORTH -> new Position(sumAxisIn(planet.longitude(), axisX), axisY);
+            case EAST -> new Position(axisX, sumAxisIn(planet.latitude(), axisY));
+            case SOUTH -> new Position(subAxisIn(planet.longitude(), axisX), axisY);
+            case WEST -> new Position(axisX, subAxisIn(planet.latitude(), axisY));
+        };
     }
 
     public Position moveBackward(Direction direction, Planet planet) {
-        Position position = this;
-
-        switch (direction) {
-            case NORTH -> position = new Position(subAxisIn(planet.longitude(), axisX), axisY);
-        }
-
-        return position;
+        return switch (direction) {
+            case NORTH -> new Position(subAxisIn(planet.longitude(), axisX), axisY);
+            case WEST -> new Position(axisX, sumAxisIn(planet.latitude(), axisY));
+            case SOUTH -> new Position(sumAxisIn(planet.longitude(), axisX), axisY);
+            case EAST -> new Position(axisX, subAxisIn(planet.latitude(), axisY));
+        };
     }
 
     private int subAxisIn(int planetSize, int axis) {
