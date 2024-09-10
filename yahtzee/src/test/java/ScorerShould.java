@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -8,6 +7,15 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ScorerShould {
+    public static Stream<Arguments> threesProvider() {
+        return Stream.of(
+            Arguments.of(
+                3,
+                new int[]{1, 2, 3, 4, 5}
+            )
+        );
+    }
+
     @ParameterizedTest
     @MethodSource("onesProvider")
     public void score_with_ones_scoring_category(int expectedScore, int[] dice) {
@@ -24,6 +32,16 @@ public class ScorerShould {
         Scorer scorer = new Scorer();
 
         int score = scorer.score(ScoringCategory.TWOS, dice);
+
+        assertEquals(expectedScore, score);
+    }
+
+    @ParameterizedTest
+    @MethodSource("threesProvider")
+    public void score_with_threes_scoring_category(int expectedScore, int[] dice) {
+        Scorer scorer = new Scorer();
+
+        int score = scorer.score(ScoringCategory.THREES, dice);
 
         assertEquals(expectedScore, score);
     }
@@ -46,6 +64,10 @@ public class ScorerShould {
             Arguments.of(
                 2,
                 new int[]{1, 2, 3, 4, 5}
+            ),
+            Arguments.of(
+                4,
+                new int[]{2, 2, 3, 4, 5}
             )
         );
     }
