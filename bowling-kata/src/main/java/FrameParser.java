@@ -12,6 +12,14 @@ public class FrameParser {
                 frames.add(frame);
 
                 index += 1;
+                continue;
+            }
+
+            if(i == 9 && rolls.size() == 21) {
+                Frame frame = new Frame(firstRoll, rolls.get(index + 1), rolls.get(index + 2));
+                frames.add(frame);
+
+                index += 3;
             } else {
                 Frame frame = new Frame(firstRoll, rolls.get(index + 1));
                 frames.add(frame);

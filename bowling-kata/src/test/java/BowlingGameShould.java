@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class BowlingGameShould {
@@ -35,7 +36,7 @@ public class BowlingGameShould {
 
         roll(20, 0);
 
-        assertSame(0, game.score());
+        assertEquals(0, game.score());
     }
 
     @Test
@@ -43,7 +44,7 @@ public class BowlingGameShould {
 
         roll(20, 1);
 
-        assertSame(20, game.score());
+        assertEquals(20, game.score());
     }
 
     @Test
@@ -55,7 +56,7 @@ public class BowlingGameShould {
 
         roll(17, 0);
 
-        assertSame(18, game.score());
+        assertEquals(18, game.score());
     }
 
     @Test
@@ -67,7 +68,14 @@ public class BowlingGameShould {
 
         roll(17, 0);
 
-        assertSame(28, game.score());
+        assertEquals(28, game.score());
+    }
+
+    @Test
+    public void get_score_of_an_all_spares_game() {
+        roll(21, 5);
+
+        assertEquals(150, game.score());
     }
 
     private void roll(int times, int pins) {
