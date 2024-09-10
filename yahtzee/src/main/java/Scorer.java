@@ -4,12 +4,16 @@ public class Scorer {
 
     private final ScoringCategory scoringCategory;
 
-    private Scorer(ScoringCategory scoringCategory) {
+    protected Scorer(ScoringCategory scoringCategory) {
         this.scoringCategory = scoringCategory;
     }
 
     public static Scorer forCategory(ScoringCategory scoringCategory) {
-        return new Scorer(scoringCategory);
+        return switch (scoringCategory) {
+            case ONES -> new OnesScorer();
+            case TWOS -> new TwosScorer();
+            case THREES -> new ThreesScorer();
+        };
     }
 
     public int score(int[] diceRolls) {
