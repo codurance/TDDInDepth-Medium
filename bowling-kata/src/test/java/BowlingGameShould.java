@@ -58,6 +58,18 @@ public class BowlingGameShould {
         assertSame(18, game.score());
     }
 
+    @Test
+    public void get_score_of_a_strike() {
+
+        game.roll(10);
+        game.roll(5);
+        game.roll(4);
+
+        roll(17, 0);
+
+        assertSame(28, game.score());
+    }
+
     private void roll(int times, int pins) {
         for (int i = 0; i < times; i++) {
             game.roll(pins);
