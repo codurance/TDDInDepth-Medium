@@ -1,3 +1,5 @@
+package com.codurance.yahtzee.scorer;
+
 import java.util.Arrays;
 
 public class ThreesScorer extends Scorer {
