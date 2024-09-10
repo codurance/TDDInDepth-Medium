@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class BonusFrame {
     private int firstRoll;
     private int secondRoll;
@@ -17,5 +19,18 @@ public class BonusFrame {
 
     public int bonus() {
         return bonus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BonusFrame that = (BonusFrame) o;
+        return firstRoll == that.firstRoll && secondRoll == that.secondRoll && lastRoll == that.lastRoll && bonus == that.bonus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstRoll, secondRoll, lastRoll, bonus);
     }
 }
