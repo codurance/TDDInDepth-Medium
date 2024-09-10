@@ -1,7 +1,18 @@
 import java.util.Arrays;
 
 public class Scorer {
-    public int score(ScoringCategory scoringCategory, int[] diceRolls) {
+
+    private final ScoringCategory scoringCategory;
+
+    private Scorer(ScoringCategory scoringCategory) {
+        this.scoringCategory = scoringCategory;
+    }
+
+    public static Scorer forCategory(ScoringCategory scoringCategory) {
+        return new Scorer(scoringCategory);
+    }
+
+    public int score(int[] diceRolls) {
         return switch (scoringCategory) {
             case ONES -> scoreOnes(diceRolls);
             case TWOS -> scoreTwos(diceRolls);

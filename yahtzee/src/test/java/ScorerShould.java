@@ -10,9 +10,9 @@ public class ScorerShould {
     @ParameterizedTest
     @MethodSource("onesProvider")
     public void score_with_ones_scoring_category(int expectedScore, int[] dice) {
-        Scorer scorer = new Scorer();
+        Scorer scorer = Scorer.forCategory(ScoringCategory.ONES);
 
-        int score = scorer.score(ScoringCategory.ONES, dice);
+        int score = scorer.score( dice);
 
         assertEquals(expectedScore, score);
     }
@@ -20,9 +20,9 @@ public class ScorerShould {
     @ParameterizedTest
     @MethodSource("twosProvider")
     public void score_with_twos_scoring_category(int expectedScore, int[] dice) {
-        Scorer scorer = new Scorer();
+        Scorer scorer = Scorer.forCategory(ScoringCategory.TWOS);
 
-        int score = scorer.score(ScoringCategory.TWOS, dice);
+        int score = scorer.score(dice);
 
         assertEquals(expectedScore, score);
     }
@@ -30,9 +30,9 @@ public class ScorerShould {
     @ParameterizedTest
     @MethodSource("threesProvider")
     public void score_with_threes_scoring_category(int expectedScore, int[] dice) {
-        Scorer scorer = new Scorer();
+        Scorer scorer = Scorer.forCategory(ScoringCategory.THREES);
 
-        int score = scorer.score(ScoringCategory.THREES, dice);
+        int score = scorer.score(dice);
 
         assertEquals(expectedScore, score);
     }
