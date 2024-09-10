@@ -5,9 +5,13 @@ public class Scorer {
         return switch (scoringCategory) {
             case ONES -> scoreOnes(diceRolls);
             case TWOS -> scoreTwos(diceRolls);
-            case THREES -> 3;
+            case THREES -> scoreThrees(diceRolls);
         };
 
+    }
+
+    private int scoreThrees(int[] diceRolls) {
+        return Arrays.stream(diceRolls).filter(dice -> dice == 3).sum();
     }
 
     private static int scoreTwos(int[] diceRolls) {
