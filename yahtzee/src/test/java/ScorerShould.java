@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,6 +16,15 @@ public class ScorerShould {
         int score = scorer.score(ScoringCategory.ONES, dice);
 
         assertEquals(expectedScore, score);
+    }
+
+    @Test
+    public void score_with_twos_scoring_category() {
+        Scorer scorer = new Scorer();
+
+        int score = scorer.score(ScoringCategory.TWOS, new int[]{1, 2, 3, 4, 5});
+
+        assertEquals(2, score);
     }
 
     public static Stream<Arguments> onesProvider() {
