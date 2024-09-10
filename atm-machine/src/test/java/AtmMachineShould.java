@@ -29,11 +29,12 @@ class AtmMachineShould {
         verify(moneyDispenser).dispense(expectedWithdrawal);
     }
 
-    @Test
-    public void withdraw_bill_worth_5() {
-        atmMachine.withdraw(5);
+    @ParameterizedTest
+    @ValueSource(ints = {5, 10, 20, 50, 100, 200, 500})
+    public void withdraw_individual_bill(int billValue) {
+        atmMachine.withdraw(billValue);
 
-        List<Money> expectedWithdrawal = List.of(Money.bill(5));
+        List<Money> expectedWithdrawal = List.of(Money.bill(billValue));
 
         verify(moneyDispenser).dispense(expectedWithdrawal);
     }
