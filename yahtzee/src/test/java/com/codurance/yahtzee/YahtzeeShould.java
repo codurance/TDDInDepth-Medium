@@ -1,5 +1,6 @@
 package com.codurance.yahtzee;
 
+import com.codurance.yahtzee.scorer.ScoringCategory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,4 +20,14 @@ public class YahtzeeShould {
         assertEquals(expectedRoll, roll);
     }
 
+    @Test
+    public void score_with_selected_strategy() {
+        int[] diceRolls = {3, 3, 3, 3, 3};
+        int expectedScore = 15;
+        Yahtzee yahtzee = new Yahtzee(null);
+
+        int score = yahtzee.scoreWith(ScoringCategory.THREES, diceRolls);
+
+        assertEquals(expectedScore, score);
+    }
 }
