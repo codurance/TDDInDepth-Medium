@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,7 +13,7 @@ public class ScorerShould {
     public void score_with_ones_scoring_category(int expectedScore, int[] dice) {
         Scorer scorer = Scorer.forCategory(ScoringCategory.ONES);
 
-        int score = scorer.score( dice);
+        int score = scorer.score(dice);
 
         assertEquals(expectedScore, score);
     }
@@ -33,6 +34,16 @@ public class ScorerShould {
         Scorer scorer = Scorer.forCategory(ScoringCategory.THREES);
 
         int score = scorer.score(dice);
+
+        assertEquals(expectedScore, score);
+    }
+
+    @Test
+    public void score_with_fours_scoring_category() {
+        Scorer scorer = Scorer.forCategory(ScoringCategory.FOURS);
+        int expectedScore = 12;
+
+        int score = scorer.score(new int[]{1, 4, 4, 4, 5});
 
         assertEquals(expectedScore, score);
     }
