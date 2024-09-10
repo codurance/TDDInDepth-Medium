@@ -1,3 +1,3 @@
 export enum PasswordValidation {
-    VALIDATION_1
+    STANDARD_VALIDATION
 }
