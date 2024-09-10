@@ -12,7 +12,7 @@ class DenominationCollection {
         ArrayList<Money> withdrawal = new ArrayList<>();
 
         for (CashUnit cashUnit : cashUnits) {
-            while (withdrawalAmount >= cashUnit.value()) {
+            while (withdrawalAmount >= cashUnit.value() && cashUnit.isAvailable()) {
                 withdrawal.add(cashUnit.takeOne());
                 withdrawalAmount -= cashUnit.value();
             }

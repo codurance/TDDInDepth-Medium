@@ -11,11 +11,12 @@ public class CashUnit {
         return denomination.value();
     }
 
-    public Money denomination() {
+    public Money takeOne() {
+        quantity--;
         return denomination;
     }
 
-    public Money takeOne() {
-        return denomination;
+    public boolean isAvailable() {
+        return quantity > 0;
     }
 }
