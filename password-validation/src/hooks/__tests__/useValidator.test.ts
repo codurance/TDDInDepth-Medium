@@ -35,4 +35,10 @@ describe("useValidator", () => {
 
         expect(validator("Password123")).toBe(false);
     })
+
+    it("should return false for a password with no lowercase letter", () => {
+        const {validator} = useValidator();
+
+        expect(validator("PASSWORD123_")).toBe(false);
+    })
 })
