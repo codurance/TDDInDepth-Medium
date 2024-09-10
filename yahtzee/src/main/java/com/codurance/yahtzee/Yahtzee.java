@@ -8,7 +8,7 @@ public class Yahtzee {
         this.diceCup = diceCup;
     }
 
-    public void roll(int numberOfDice) {
-        diceCup.roll(numberOfDice);
+    public int[] roll(int numberOfDice) {
+        return diceCup.roll(numberOfDice);
     }
 }
