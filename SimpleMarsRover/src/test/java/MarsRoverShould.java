@@ -37,13 +37,14 @@ public class MarsRoverShould {
         assertEquals(expectedPosition, marsRover.position());
     }
 
-    @Test
-    public void move_backward_until_wrap_the_planet() {
-        MarsRover marsRover = new MarsRover(Direction.NORTH, new Position(2, 3), new Planet(5, 5));
+    @ParameterizedTest
+    @MethodSource("getBackwardWrapAround")
+    public void move_backward_until_wrap_the_planet(Direction direction, Position position, Position expectedPosition) {
+        MarsRover marsRover = new MarsRover(direction, position, new Planet(5, 5));
 
         marsRover.execute("BBBBBB");
 
-        assertEquals(new Position(1, 3), marsRover.position());
+        assertEquals(expectedPosition, marsRover.position());
     }
 
     @ParameterizedTest
@@ -133,7 +134,6 @@ public class MarsRoverShould {
         );
     }
 
-
     public static Stream<Arguments> getForwardWrapAround() {
         return Stream.of(
             Arguments.of(
@@ -157,8 +157,31 @@ public class MarsRoverShould {
                 new Position(0, 3)
             )
         );
+    }
 
-
+    public static Stream<Arguments> getBackwardWrapAround() {
+        return Stream.of(
+            Arguments.of(
+                Direction.NORTH,
+                new Position(0, 2),
+                new Position(4, 2)
+            ),
+            Arguments.of(
+                Direction.WEST,
+                new Position(0, 2),
+                new Position(0, 3)
+            ),
+            Arguments.of(
+                Direction.SOUTH,
+                new Position(0, 2),
+                new Position(1, 2)
+            ),
+            Arguments.of(
+                Direction.EAST,
+                new Position(0, 2),
+                new Position(0, 1)
+            )
+        );
     }
 
 }
