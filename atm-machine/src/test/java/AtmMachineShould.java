@@ -15,10 +15,22 @@ class AtmMachineShould {
     private AtmMachine atmMachine;
     private MoneyDispenser moneyDispenser;
 
+    private List<CashUnit> cashUnits = List.of(
+        new CashUnit(Money.bill(500), 2),
+        new CashUnit(Money.bill(200), 3),
+        new CashUnit(Money.bill(100), 5),
+        new CashUnit(Money.bill(50), 12),
+        new CashUnit(Money.bill(20), 20),
+        new CashUnit(Money.bill(10), 50),
+        new CashUnit(Money.bill(5), 100),
+        new CashUnit(Money.coin(2), 250),
+        new CashUnit(Money.coin(1), 500)
+    );
+
     @BeforeEach
     void setUp() {
         moneyDispenser = mock(MoneyDispenser.class);
-        atmMachine = new AtmMachine(new DenominationCollection(), moneyDispenser);
+        atmMachine = new AtmMachine(new DenominationCollection(cashUnits), moneyDispenser);
     }
 
     @ParameterizedTest
