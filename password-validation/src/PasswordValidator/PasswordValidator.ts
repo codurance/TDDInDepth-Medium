@@ -4,23 +4,35 @@ export class PasswordValidator {
             return false;
         }
 
-        if (!/[A-Z]/.test(password)) {
+        if (!this.hasUpperCase(password)) {
             return false;
         }
 
-        if (!/\d/.test(password)) {
+        if (!this.hasNumber(password)) {
             return false;
         }
 
-        if (!/_/.test(password)) {
+        if (!this.hasSpecialCharacter(password)) {
             return false;
         }
 
-        if (!/[a-z]/.test(password)) {
-            return false;
-        }
+        return this.hasLowerCase(password);
+    }
 
-        return true;
+    private hasLowerCase(password: string) {
+        return /[a-z]/.test(password);
+    }
+
+    private hasSpecialCharacter(password: string) {
+        return /_/.test(password);
+    }
+
+    private hasNumber(password: string) {
+        return /\d/.test(password);
+    }
+
+    private hasUpperCase(password: string) {
+        return /[A-Z]/.test(password);
     }
 
     private hasRequiredLength(password: string) {
