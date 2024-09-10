@@ -2,15 +2,12 @@ import java.util.Arrays;
 
 public class Scorer {
     public int score(ScoringCategory scoringCategory, int[] diceRolls) {
-        if (scoringCategory == ScoringCategory.ONES) {
-            return scoreOnes(diceRolls);
-        } else if (scoringCategory == ScoringCategory.TWOS) {
-            return scoreTwos(diceRolls);
-        } else if (scoringCategory == ScoringCategory.THREES) {
-            return 3;
-        }
+        return switch (scoringCategory) {
+            case ONES -> scoreOnes(diceRolls);
+            case TWOS -> scoreTwos(diceRolls);
+            case THREES -> 3;
+        };
 
-        return scoreOnes(diceRolls);
     }
 
     private static int scoreTwos(int[] diceRolls) {
