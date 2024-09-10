@@ -48,6 +48,16 @@ public class ScorerShould {
         assertEquals(expectedScore, score);
     }
 
+    @Test
+    public void score_with_fives_scoring_category() {
+        Scorer scorer = Scorer.forCategory(ScoringCategory.FIVES);
+        int expectedScore = 15;
+
+        int score = scorer.score(new int[]{1, 2, 5, 5, 5});
+
+        assertEquals(expectedScore, score);
+    }
+
     public static Stream<Arguments> onesProvider() {
         return Stream.of(
             Arguments.of(
