@@ -1,3 +1,5 @@
+package com.codurance.yahtzee.scorer;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -54,6 +56,16 @@ public class ScorerShould {
         int expectedScore = 15;
 
         int score = scorer.score(new int[]{1, 2, 5, 5, 5});
+
+        assertEquals(expectedScore, score);
+    }
+
+    @Test
+    public void score_with_sixes_scoring_category() {
+        Scorer scorer = Scorer.forCategory(ScoringCategory.SIXES);
+        int expectedScore = 30;
+
+        int score = scorer.score(new int[]{6, 6, 6, 6, 6});
 
         assertEquals(expectedScore, score);
     }
