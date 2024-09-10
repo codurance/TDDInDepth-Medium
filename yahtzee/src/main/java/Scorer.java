@@ -5,6 +5,7 @@ public abstract class Scorer {
             case ONES -> new OnesScorer();
             case TWOS -> new TwosScorer();
             case THREES -> new ThreesScorer();
+            case FOURS -> new FoursScorer();
         };
     }
 

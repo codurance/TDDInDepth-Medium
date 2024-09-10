@@ -1,3 +1,3 @@
 public enum ScoringCategory {
-    TWOS, THREES, ONES
+    TWOS, THREES, FOURS, ONES
 }
