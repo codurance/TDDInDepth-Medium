@@ -1,12 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class BowlingGame {
 
-    private int score = 0;
+    private List<Integer> rolls = new ArrayList<>();
 
     public int score() {
-        return score;
+        return new ScoreCalculator().getScoreOf(rolls);
     }
 
     public void roll(int pins) {
-        score += pins;
+        rolls.add(pins);
     }
 }
