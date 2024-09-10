@@ -12,6 +12,10 @@ public class ScoreCalculator {
     public int getScoreOf(List<Integer> rolls) {
         Frames frames = frameParser.getFramesOf(rolls);
 
-        return frames.getScore() + bonusCalculator.getBonus(frames);
+        return bonusCalculator.getBonusFrames(frames)
+            .stream()
+            .map(BonusFrame::score)
+            .reduce(Integer::sum)
+            .orElse(0);
     }
 }
