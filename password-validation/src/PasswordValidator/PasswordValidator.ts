@@ -1,6 +1,6 @@
 export class PasswordValidator {
     public execute(password: string) {
-        if (password.length <= 8) {
+        if (!this.hasRequiredLength(password)) {
             return false;
         }
 
@@ -21,5 +21,9 @@ export class PasswordValidator {
         }
 
         return true;
+    }
+
+    private hasRequiredLength(password: string) {
+        return password.length > 8;
     }
 }
