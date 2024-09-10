@@ -1,9 +1,6 @@
 import java.util.Arrays;
 
 public class OnesScorer extends Scorer {
-    public OnesScorer() {
-        super(ScoringCategory.ONES);
-    }
 
     @Override
     public int score(int[] diceRolls) {
