@@ -11,4 +11,8 @@ public class Frames {
     public int getScore() {
         return frames.stream().map(Frame::sumRolls).reduce(Integer::sum).orElse(0);
     }
+
+    public Frame get(int index) {
+        return frames.get(index);
+    }
 }

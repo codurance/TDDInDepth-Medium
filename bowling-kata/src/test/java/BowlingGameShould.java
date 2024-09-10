@@ -46,6 +46,18 @@ public class BowlingGameShould {
         assertSame(20, game.score());
     }
 
+    @Test
+    public void get_score_of_a_spare() {
+
+        game.roll(5);
+        game.roll(5);
+        game.roll(4);
+
+        roll(17, 0);
+
+        assertSame(18, game.score());
+    }
+
     private void roll(int times, int pins) {
         for (int i = 0; i < times; i++) {
             game.roll(pins);

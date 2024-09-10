@@ -11,4 +11,12 @@ public class Frame {
     public int sumRolls() {
         return firstRoll + secondRoll;
     }
+
+    public int firstRoll() {
+        return firstRoll;
+    }
+
+    public boolean isSpare() {
+        return firstRoll + secondRoll == 10;
+    }
 }
