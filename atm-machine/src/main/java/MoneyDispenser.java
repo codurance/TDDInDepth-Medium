@@ -1,6 +1,5 @@
 import java.util.List;
 
-public class MoneyDispenser {
-    public void dispense(List<Money> expectedWithdrawal) {
-    }
+public interface MoneyDispenser {
+    public void dispense(List<Money> expectedWithdrawal);
 }
