@@ -4,6 +4,10 @@ export const useValidator = () => {
             return false;
         }
 
+        if (!/[A-Z]/.test(password)) {
+            return false;
+        }
+
         return true;
     }
 
