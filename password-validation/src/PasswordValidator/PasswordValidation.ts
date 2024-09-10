@@ -1,4 +1,4 @@
 export enum PasswordValidation {
-    STANDARD_VALIDATION,
-    SHORT_VALIDATION
+    STANDARD_VALIDATION = "Standard",
+    SHORT_VALIDATION = "Short"
 }
