@@ -7,8 +7,12 @@ public class BonusCalculator {
             }
             Frame frame = frames.get(i);
             if (frame.isStrike()) {
-                score += frames.get(i + 1).firstRoll();
-                score += frames.get(i + 1).secondRoll();
+                Frame nextFrame = frames.get(i + 1);
+                score += nextFrame.firstRoll();
+                if (nextFrame.isStrike()) {
+                    score += frames.get(i + 2).firstRoll();
+                }
+                score += nextFrame.secondRoll();
             }
 
             if (frame.isSpare()) {
