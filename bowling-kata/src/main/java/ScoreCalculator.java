@@ -1,9 +1,15 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreCalculator {
+    private final FrameParser frameParser;
+
+    public ScoreCalculator(FrameParser frameParser) {
+
+        this.frameParser = frameParser;
+    }
+
     public int getScoreOf(List<Integer> rolls) {
-        Frames frames = getFramesOf(rolls);
+        Frames frames = frameParser.getFramesOf(rolls);
 
         return frames.getScore() + getBonus(frames);
     }
@@ -20,16 +26,4 @@ public class ScoreCalculator {
         return score;
     }
 
-    private Frames getFramesOf(List<Integer> rolls) {
-        List<Frame> frames = new ArrayList<>();
-        int index = 0;
-        for (int i = 0; i < 10; i++) {
-            Frame frame = new Frame(rolls.get(index), rolls.get(index + 1));
-            frames.add(frame);
-
-            index += 2;
-        }
-
-        return new Frames(frames);
-    }
 }

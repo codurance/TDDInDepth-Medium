@@ -3,10 +3,15 @@ import java.util.List;
 
 public class BowlingGame {
 
+    private final ScoreCalculator scoreCalculator;
     private List<Integer> rolls = new ArrayList<>();
 
+    public BowlingGame(ScoreCalculator scoreCalculator) {
+        this.scoreCalculator = scoreCalculator;
+    }
+
     public int score() {
-        return new ScoreCalculator().getScoreOf(rolls);
+        return scoreCalculator.getScoreOf(rolls);
     }
 
     public void roll(int pins) {
