@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -34,7 +35,15 @@ public class MarsRoverShould {
         marsRover.execute("FFFFFF");
 
         assertEquals(expectedPosition, marsRover.position());
+    }
 
+    @Test
+    public void move_backward_until_wrap_the_planet() {
+        MarsRover marsRover = new MarsRover(Direction.NORTH, new Position(2, 3), new Planet(5, 5));
+
+        marsRover.execute("BBBBBB");
+
+        assertEquals(new Position(1, 3), marsRover.position());
     }
 
     @ParameterizedTest

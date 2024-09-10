@@ -12,6 +12,16 @@ public record Position(int axisX, int axisY) {
         return position;
     }
 
+    public Position moveBackward(Direction direction, Planet planet) {
+        Position position = this;
+
+        switch (direction) {
+            case NORTH -> position = new Position(subAxisIn(planet.longitude(), axisX), axisY);
+        }
+
+        return position;
+    }
+
     private int subAxisIn(int planetSize, int axis) {
         axis = axis - 1;
 
