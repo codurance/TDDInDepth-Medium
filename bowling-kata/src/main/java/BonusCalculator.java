@@ -2,14 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BonusCalculator {
-    public int getBonus(Frames frames) {
-        return getBonusFrames(frames)
-            .stream()
-            .map(BonusFrame::bonus)
-            .reduce(Integer::sum)
-            .orElse(0);
-    }
-
     public List<BonusFrame> getBonusFrames(Frames frames) {
         List<BonusFrame> bonusFrames = new ArrayList<>();
         int rollNumber = 0;
@@ -33,26 +25,39 @@ public class BonusCalculator {
     }
 
     private static BonusFrame getBonusFrame(Frame frame) {
-        BonusFrame bonusFrame = new BonusFrame(frame.firstRoll(), frame.secondRoll(), 0, 0);
-        return bonusFrame;
+        return new BonusFrame(frame.firstRoll(), frame.secondRoll(), 0, 0);
     }
 
     private static BonusFrame getStrikeBonusFrame(Frames frames, Frame frame, int rollNumber) {
-        Frame nextFrame = frames.get(rollNumber + 1);
-        int bonus = nextFrame.firstRoll();
-        if (nextFrame.isStrike()) {
-            bonus += frames.get(rollNumber + 2).firstRoll();
-        }
-        bonus += nextFrame.secondRoll();
-
-        return new BonusFrame(frame.firstRoll(), frame.secondRoll(), frame.lastRoll(), bonus);
-    }
-
-    private static BonusFrame getSpareBonusFrame(Frames frames, Frame frame, int rollNumber) {
-        if (rollNumber == 9) {
+        if (frame.isLastFrame()) {
             return new BonusFrame(frame.firstRoll(), frame.secondRoll(), frame.lastRoll(), 0);
         }
 
-        return new BonusFrame(frame.firstRoll(), frame.secondRoll(), frame.lastRoll(), frames.get(rollNumber + 1).firstRoll());
+        Frame nextFrame = frames.get(rollNumber + 1);
+        int bonus = 0;
+        if (nextFrame.isStrike()) {
+            if (nextFrame.isLastFrame()) {
+                bonus += nextFrame.secondRoll();
+            } else {
+                bonus += frames.get(rollNumber + 2).firstRoll();
+            }
+        } else {
+            bonus += nextFrame.secondRoll();
+        }
+
+        return new BonusFrame(frame.firstRoll(), frame.secondRoll(), 0, nextFrame.firstRoll() + bonus);
+    }
+
+    private static BonusFrame getSpareBonusFrame(Frames frames, Frame frame, int rollNumber) {
+        if (frame.isLastFrame()) {
+            return new BonusFrame(frame.firstRoll(), frame.secondRoll(), frame.lastRoll(), 0);
+        }
+
+        return new BonusFrame(
+            frame.firstRoll(),
+            frame.secondRoll(),
+            0,
+            frames.get(rollNumber + 1).firstRoll()
+        );
     }
 }
