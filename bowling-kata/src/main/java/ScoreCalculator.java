@@ -1,29 +1,17 @@
 import java.util.List;
 
 public class ScoreCalculator {
+    private final BonusCalculator bonusCalculator;
     private final FrameParser frameParser;
 
-    public ScoreCalculator(FrameParser frameParser) {
-
+    public ScoreCalculator(FrameParser frameParser, BonusCalculator bonusCalculator) {
         this.frameParser = frameParser;
+        this.bonusCalculator = bonusCalculator;
     }
 
     public int getScoreOf(List<Integer> rolls) {
         Frames frames = frameParser.getFramesOf(rolls);
 
-        return frames.getScore() + getBonus(frames);
+        return frames.getScore() + bonusCalculator.getBonus(frames);
     }
-
-    private int getBonus(Frames frames) {
-        int score = 0;
-        for (int i = 0; i < 10; i++) {
-            Frame frame = frames.get(i);
-            if (frame.isSpare()) {
-                score += frames.get(i + 1).firstRoll();
-            }
-        }
-
-        return score;
-    }
-
 }
