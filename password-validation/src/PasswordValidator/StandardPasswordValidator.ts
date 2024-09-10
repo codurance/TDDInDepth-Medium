@@ -1,6 +1,6 @@
 import {PasswordValidatorTemplate} from "./PasswordValidatorTemplate.ts";
 
-export class PasswordValidator extends PasswordValidatorTemplate {
+export class StandardPasswordValidator extends PasswordValidatorTemplate {
     protected hasLowerCase(password: string) {
         return /[a-z]/.test(password);
     }

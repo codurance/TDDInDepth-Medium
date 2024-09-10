@@ -1,11 +1,11 @@
 import {PasswordValidation} from "./PasswordValidation.ts";
-import {PasswordValidator} from "./PasswordValidator.ts";
+import {StandardPasswordValidator} from "./StandardPasswordValidator.ts";
 
 export class PasswordValidatorFactory {
     public static create(passwordValidation: PasswordValidation) {
         switch (passwordValidation) {
-            case PasswordValidation.VALIDATION_1:
-                return new PasswordValidator();
+            case PasswordValidation.STANDARD_VALIDATION:
+                return new StandardPasswordValidator();
             default:
                 throw new Error("Invalid password validation");
         }
