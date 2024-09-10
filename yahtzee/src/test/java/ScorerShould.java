@@ -7,13 +7,6 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ScorerShould {
-    public static Stream<Arguments> onesProvider() {
-        return Stream.of(
-            Arguments.of(
-                1,
-                new int[]{1, 2, 3, 4, 5}));
-    }
-
     @ParameterizedTest
     @MethodSource("onesProvider")
     public void score_with_ones_scoring_category(int expectedScore, int[] dice) {
@@ -22,5 +15,18 @@ public class ScorerShould {
         int score = scorer.score(ScoringCategory.ONES, dice);
 
         assertEquals(expectedScore, score);
+    }
+
+    public static Stream<Arguments> onesProvider() {
+        return Stream.of(
+            Arguments.of(
+                1,
+                new int[]{1, 2, 3, 4, 5}
+            ),
+            Arguments.of(
+                2,
+                new int[]{1, 1, 3, 4, 5}
+            )
+        );
     }
 }
