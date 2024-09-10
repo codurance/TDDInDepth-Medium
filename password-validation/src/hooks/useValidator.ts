@@ -12,6 +12,10 @@ export const useValidator = () => {
             return false;
         }
 
+        if(!/_/.test(password)) {
+            return false;
+        }
+
         return true;
     }
 
