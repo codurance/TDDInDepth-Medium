@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class DenominationCollection {
+class CashCollection {
     private final List<CashUnit> cashUnits;
 
-    public DenominationCollection(List<CashUnit> cashUnits) {
+    public CashCollection(List<CashUnit> cashUnits) {
         this.cashUnits = cashUnits;
     }
 

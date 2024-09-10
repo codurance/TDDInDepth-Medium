@@ -25,8 +25,8 @@ public class AtmWithdrawalFeatureTest {
             new CashUnit(Money.coin(1), 500)
         );
         MoneyDispenser moneyDispenser = mock(MoneyDispenser.class);
-        DenominationCollection denominationCollection = new DenominationCollection(cashUnits);
-        AtmMachine atmMachine = new AtmMachine(denominationCollection, moneyDispenser);
+        CashCollection cashCollection = new CashCollection(cashUnits);
+        AtmMachine atmMachine = new AtmMachine(cashCollection, moneyDispenser);
 
         atmMachine.withdraw(1725);
 

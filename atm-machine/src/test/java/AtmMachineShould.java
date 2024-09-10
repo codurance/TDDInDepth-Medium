@@ -30,7 +30,7 @@ class AtmMachineShould {
     @BeforeEach
     void setUp() {
         moneyDispenser = mock(MoneyDispenser.class);
-        atmMachine = new AtmMachine(new DenominationCollection(cashUnits), moneyDispenser);
+        atmMachine = new AtmMachine(new CashCollection(cashUnits), moneyDispenser);
     }
 
     @ParameterizedTest

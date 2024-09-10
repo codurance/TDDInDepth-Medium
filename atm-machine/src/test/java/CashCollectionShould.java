@@ -4,7 +4,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DenominationCollectionShould {
+class CashCollectionShould {
     @Test
     public void only_select_available_denominations() {
         List<CashUnit> cashUnits = List.of(
@@ -13,7 +13,7 @@ class DenominationCollectionShould {
             new CashUnit(Money.bill(100), 2),
             new CashUnit(Money.bill(50), 2)
         );
-        DenominationCollection denominationCollection = new DenominationCollection(cashUnits);
+        CashCollection denominationCollection = new CashCollection(cashUnits);
         List<Money> expectedDenominations = List.of(
             Money.bill(500),
             Money.bill(200),

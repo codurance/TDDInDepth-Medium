@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class AtmMachine {
 
-    private final DenominationCollection denominationCollection;
+    private final CashCollection denominationCollection;
     private final MoneyDispenser moneyDispenser;
 
-    public AtmMachine(DenominationCollection denominationCollection, MoneyDispenser moneyDispenser) {
+    public AtmMachine(CashCollection denominationCollection, MoneyDispenser moneyDispenser) {
         this.denominationCollection = denominationCollection;
         this.moneyDispenser = moneyDispenser;
     }
